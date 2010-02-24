@@ -20,6 +20,9 @@ div.right {
     margin-left: 130px ;
 }
 
+h1 a {
+    text-decoration: none ;
+}
 
 body { background-color: #fff; color: #333; }
 
