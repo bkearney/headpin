@@ -1,0 +1,4 @@
+%h1 Edit The Certificates
+- form_for :certificate, :url => {:action => "create"} do |f|
+    = f.text_area :content, :size => "80x20"
+    = submit_tag 'update'

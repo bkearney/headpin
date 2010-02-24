@@ -1,0 +1,17 @@
+%h1 Product: #{@product.name}
+%table
+    %tr
+        %td ID:
+        %td=@product.id
+    %tr
+        %td Label:
+        %td=@product.label 
+    %tr
+        %td Attributes:
+    -@product.productAttributes.each do |key, value|
+        %tr
+            %td
+            %td= key
+            %td= value
+    %tr
+        %td=link_to 'Back', product_list_url

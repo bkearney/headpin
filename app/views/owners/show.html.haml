@@ -1,0 +1,23 @@
+%h1 Owner: #{@owner.name}
+%table
+    %tr
+        %td ID:
+        %td=@owner.id
+    %tr
+        %td Name:
+        %td=@owner.name 
+    %tr
+        %td Pools:
+    %tr
+        %th Product
+        %th Quantity
+        %th Start Date
+        %th End Date    
+    -@owner.entitlementPools.each do |pool|
+        %tr
+            %td= pool.productId 
+            %td= pool.maxMembers 
+            %td= pool.startDate 
+            %td= pool.endDate             
+    %tr
+        %td=link_to 'Back', owner_list_url

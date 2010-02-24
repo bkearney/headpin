@@ -1,0 +1,15 @@
+!!! XML
+!!!
+%html
+    %head
+    %title Headpin
+    = stylesheet_link_tag "headpin"
+%body
+    .main 
+        .left
+            %ul.menu
+                %li= link_to "Certificate", certificate_url               
+                %li= link_to "Owners", owner_list_url        
+                %li= link_to "Products", product_list_url            
+        .right
+            = yield
