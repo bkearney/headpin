@@ -13,4 +13,27 @@ class OwnersController < ApplicationController
       format.xml  { render :xml => @sample }
     end
   end
+  
+    def new
+        @owner = Owner.new()
+        respond_to do |format|
+          format.html
+          format.xml  { render :xml => @certificate }
+        end        
+    end    
+    
+    def create
+        @owner = Owner.new(params[:owner])
+
+        respond_to do |format|
+          if @owner.save
+            flash[:notice] = 'Owner was successfully created.'
+            format.html { redirect_to(owner_url(:id => @owner.id)) }
+            format.xml  { render :xml => @owner, :status => :created, :location => @certificate }
+          else
+            format.html { render :action => "new" }
+            format.xml  { render :xml => @owner.errors, :status => :unprocessable_entity }
+          end
+        end
+    end          
 end

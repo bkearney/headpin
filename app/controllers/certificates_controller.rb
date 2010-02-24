@@ -11,7 +11,6 @@ class CertificatesController < ApplicationController
     
     def edit
         @certificate = Certificate.find(:first)
-        #@certificate ||= Certficate.new()
         respond_to do |format|
           format.html
           format.xml  { render :xml => @certificate }

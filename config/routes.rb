@@ -4,7 +4,11 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "headpin"
   map.product_list 'product', :controller => "products", :action => 'index'
   map.product 'product/:id', :controller => "products", :action => 'show' 
-  map.owner_list 'owner', :controller => "owners", :action => 'index'
+  map.owner_list 'owner', :controller => "owners", :action => 'index',
+                    :conditions => {:method => :get}
+  map.owner_create 'owner', :controller => "owners", :action => 'create',
+                    :conditions => {:method => :post}                
+  map.owner_new 'owner/new', :controller => "owners", :action => 'new'                          
   map.owner 'owner/:id', :controller => "owners", :action => 'show'  
   map.certificate 'certificate', :controller => 'certificates', :action => 'index',
                     :conditions => {:method => :get}

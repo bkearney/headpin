@@ -16,13 +16,21 @@ class CandlepinObject < ActiveResource::Base
             @context=context
         end
         
-        def has_many(children)
+        def has_many(*children)
             @children = children.to_a
         end
         
         def child_relationships
             @children.nil? ? [] : @children
-        end        
+        end   
+        
+        def attrs(*attrs)
+            @attrs = attrs.to_a
+        end
+        
+        def default_attrs
+            @attrs.nil? ? [] : @attrs
+        end  
         
         def element_path(id, prefix_options = {}, query_options = nil) 
             "/candlepin/#{@context}/#{id}"
@@ -57,9 +65,20 @@ class CandlepinObject < ActiveResource::Base
         new_attributes = attributes 
         # Handle the case of a single string. This may be a bit of a hack :)
         new_attributes = {"value" => attributes} if attributes.is_a?(String)   
-        super(new_attributes)
+        # Put in the default relationsips
         self.class.child_relationships.each do |child|
-             @attributes[child.to_s]= [] if !@attributes.has_key?(child.to_s)
+            childString = child.to_s
+            if (new_attributes.has_key?(childString))
+                new_attributes[childString] = [new_attributes[childString]] if new_attributes[childString].is_a?(Hash)
+            else
+                new_attributes[childString]= [] 
+            end
         end
+        # Put in the default attributes
+        self.class.default_attrs.each do |attr|
+            attrString = attr.to_s
+            new_attributes[attrString]= "" if !new_attributes.has_key?(attrString)
+        end
+        super(new_attributes)
     end
 end
