@@ -24,6 +24,15 @@ h1 a {
     text-decoration: none ;
 }
 
+.red {
+	color: #FF0000;
+}
+
+.green {
+	color: #00FC1D;
+}
+
+
 body { background-color: #fff; color: #333; }
 
 body, p, ol, ul, td {

@@ -46,12 +46,20 @@ class CandlepinObject < ActiveResource::Base
                 # Need to make the result an array of hashmaps in order to 
                 # parse it well.
                 inner_collection = Array.new()
-                # handle the case of {key => {hash of attributes}} which is single object                
-                inner_collection = collection["#{@context}"] if collection.is_a?(Hash)
+                # handle the case of {key => {hash of attributes}} which is single object
+                # as well as {hash of attributes}
+                if (collection.is_a?(Hash))
+                  if (collection.key?("#{@context}") && collection.length == 1)
+                    inner_collection = collection["#{@context}"]
+                  else
+                    inner_collection = collection
+                  end
+                end
                 # Handle the case of a single string. This may be a bit of a hack :)
                 inner_collection = {"value" => collection} if collection.is_a?(String)                   
-                # handle the case of {key => [array of hashses]} which is a collection of objects
-                inner_collection = [] << inner_collection if inner_collection.is_a?(Hash)
+                # We need this to be an array of hashs {key => [array of hashses]}, 
+                # so if it is a single hash we array it.
+                inner_collection = [] << inner_collection if inner_collection.is_a?(Hash)               
                 inner_collection.each do |record|
                     items << instantiate_record(record, prefix_options)
                 end

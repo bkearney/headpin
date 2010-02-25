@@ -1,0 +1,7 @@
+%h1 Candlepin Status
+
+- if @status && @status.result == "true"
+  %h2.green Candlepin is Alive!
+- else
+  %h2.red Candlepin is Dead
+		

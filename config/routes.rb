@@ -15,6 +15,7 @@ ActionController::Routing::Routes.draw do |map|
   map.certificate 'certificate', :controller => 'certificates', :action => 'create',
                     :conditions => {:method => :post}
   map.certificate_edit 'certificate/edit', :controller => 'certificates', :action => 'edit'
+  map.status 'status', :controller => 'status', :action => 'ping'  
   
   # The priority is based upon order of creation: first created -> highest priority.
 
