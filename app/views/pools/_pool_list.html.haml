@@ -1,0 +1,16 @@
+%table
+    %tr
+        %th Active
+        %th ID
+        %th Product
+        %th Max Members
+        %th Start Date
+        %th End Date        
+    - pools.each do |pool|
+        %tr
+            %td= pool.activeSubscription
+            %td= pool.id 
+            %td= link_to pool.productId, product_url(:id =>   pool.productId)
+            %td= pool.maxMembers
+            %td= pool.startDate
+            %td= pool.endDate

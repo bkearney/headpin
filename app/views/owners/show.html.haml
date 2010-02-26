@@ -12,12 +12,7 @@
         %th Product
         %th Quantity
         %th Start Date
-        %th End Date    
-    -@owner.entitlementPools.each do |pool|
-        %tr
-            %td= pool.productId 
-            %td= pool.maxMembers 
-            %td= pool.startDate 
-            %td= pool.endDate             
-    %tr
-        %td=link_to 'Back', owner_list_url
+        %th End Date
+%h3 Entitlement Pools            
+=render :partial => "pools/pool_list", :locals => {:pools => @owner.pool}        
+= link_to 'Back', :back

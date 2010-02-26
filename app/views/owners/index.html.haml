@@ -4,9 +4,7 @@
     %tr
         %th Name
         %th Id
-        %th # Pools        
     - @owners.each do |owner|
         %tr
             %td= link_to owner.name, owner_url(:id => owner.id)
-            %td= owner.id 
-            %td= owner.entitlementPools.size            
+            %td= owner.id            

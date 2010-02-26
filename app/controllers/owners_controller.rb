@@ -16,6 +16,7 @@ class OwnersController < ApplicationController
   
     def new
         @owner = Owner.new()
+        @pool = Pool
         respond_to do |format|
           format.html
           format.xml  { render :xml => @certificate }
