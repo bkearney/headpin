@@ -1,10 +1,7 @@
-#require "candlepin_rest"
-
 # See http://www.quarkruby.com/2008/3/11/consume-non-rails-style-rest-apis
 # for much of the detils behind this method
 class CandlepinObject < ActiveResource::Base
 
-    #include CandlepinRest
     
     self.site = "http://localhost:8080"
     self.format = :json

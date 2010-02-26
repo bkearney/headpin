@@ -1,0 +1,10 @@
+%h1 Current Rules Set
+
+- if @rules.nil?
+    .none= link_to "Create the Rules", rules_edit_url
+- else
+    .none= link_to "Edit the Rules", rules_edit_url
+    .text
+        %pre
+            :escaped
+                #{@rules.content}

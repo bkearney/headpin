@@ -2,19 +2,24 @@ ActionController::Routing::Routes.draw do |map|
  
   # Try and recreate the candlepin api
   map.root :controller => "headpin"
-  map.product_list 'product', :controller => "products", :action => 'index'
-  map.product 'product/:id', :controller => "products", :action => 'show' 
+  map.certificate 'certificate', :controller => 'certificates', :action => 'index',
+                    :conditions => {:method => :get}
+  map.certificate 'certificate', :controller => 'certificates', :action => 'create',
+                    :conditions => {:method => :post}
+  map.certificate_edit 'certificate/edit', :controller => 'certificates', :action => 'edit'  
   map.owner_list 'owner', :controller => "owners", :action => 'index',
                     :conditions => {:method => :get}
   map.owner_create 'owner', :controller => "owners", :action => 'create',
                     :conditions => {:method => :post}                
   map.owner_new 'owner/new', :controller => "owners", :action => 'new'                          
   map.owner 'owner/:id', :controller => "owners", :action => 'show'  
-  map.certificate 'certificate', :controller => 'certificates', :action => 'index',
-                    :conditions => {:method => :get}
-  map.certificate 'certificate', :controller => 'certificates', :action => 'create',
+  map.product_list 'product', :controller => "products", :action => 'index'
+  map.product 'product/:id', :controller => "products", :action => 'show'   
+  map.rules 'rules', :controller => 'rules', :action => 'index',
+                    :conditions => {:method => :get}  
+  map.rules 'rules', :controller => 'rules', :action => 'create',
                     :conditions => {:method => :post}
-  map.certificate_edit 'certificate/edit', :controller => 'certificates', :action => 'edit'
+  map.rules_edit 'rules/edit', :controller => 'rules', :action => 'edit'                    
   map.status 'status', :controller => 'status', :action => 'ping'  
   
   # The priority is based upon order of creation: first created -> highest priority.
