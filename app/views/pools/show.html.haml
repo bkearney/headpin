@@ -1,0 +1,22 @@
+%h1 Entitlement Pool: #{@pool.Id}
+%table
+    %tr
+        %td ID:
+        %td=@pool.id
+    %tr
+        %td Active:
+        %td=@pool.activeSubscription 
+    %tr
+        %td Product:
+        %td=link_to @pool.productId, product_url(:id =>  @pool.productId)       
+    %tr
+        %td Max Members:
+        %td=@pool.maxMembers         
+    %tr
+        %td Start Date:   
+        %td= @pool.startDate        
+    %tr
+        %td End Date:     
+        %td= @pool.endDate       
+    %tr 
+        %td=link_to 'Back', :back
