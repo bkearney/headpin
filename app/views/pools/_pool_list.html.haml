@@ -9,7 +9,7 @@
     - pools.each do |pool|
         %tr
             %td= pool.activeSubscription
-            %td= pool.id 
+            %td= link_to pool.Id, pool
             %td= link_to pool.productId, product_url(:id =>   pool.productId)
             %td= pool.maxMembers
             %td= pool.startDate

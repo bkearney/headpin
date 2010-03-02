@@ -9,6 +9,8 @@ class RulesController < ApplicationController
         end        
     end
     
+    # FIXME When we get indexes, this should break out into
+    # both a certificate/new and certificate/%{id} show    
     def edit
         @rules = Rules.find(:first)
         respond_to do |format|

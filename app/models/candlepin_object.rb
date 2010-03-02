@@ -86,4 +86,8 @@ class CandlepinObject < ActiveResource::Base
         end
         super(new_attributes)
     end
+    
+    def Id
+      self.id
+    end
 end

@@ -14,6 +14,7 @@ ActionController::Routing::Routes.draw do |map|
   map.owner_new 'owner/new', :controller => "owners", :action => 'new'                          
   map.owner 'owner/:id', :controller => "owners", :action => 'show'  
   map.pool_list 'pool', :controller => "pools", :action => 'index'  
+  map.pool "pool/:id", :controller => "pools", :action => 'show'  
   map.product_list 'product', :controller => "products", :action => 'index'
   map.product 'product/:id', :controller => "products", :action => 'show'   
   map.rules 'rules', :controller => 'rules', :action => 'index',
