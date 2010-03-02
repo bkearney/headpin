@@ -36,5 +36,15 @@ class OwnersController < ApplicationController
             format.xml  { render :xml => @owner.errors, :status => :unprocessable_entity }
           end
         end
-    end          
+    end
+    
+    def destroy
+        @owner = Owner.find(params[:id])
+        @owner.destroy()
+        
+        respond_to do |format|
+          format.html { redirect_to(owner_list_url) }
+          format.xml  { head :ok }
+        end
+    end
 end

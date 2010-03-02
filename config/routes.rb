@@ -11,8 +11,10 @@ ActionController::Routing::Routes.draw do |map|
                     :conditions => {:method => :get}
   map.owner_create 'owner', :controller => "owners", :action => 'create',
                     :conditions => {:method => :post}                
-  map.owner_new 'owner/new', :controller => "owners", :action => 'new'                          
-  map.owner 'owner/:id', :controller => "owners", :action => 'show'  
+  map.owner_new 'owner/new', :controller => "owners", :action => 'new'
+  map.owner_delete 'owner/:id', :controller => "owners", :action => 'destroy',
+                    :conditions => {:method => :delete}         
+  map.owner 'owner/:id', :controller => "owners", :action => 'show'    
   map.pool_list 'pool', :controller => "pools", :action => 'index'  
   map.pool "pool/:id", :controller => "pools", :action => 'show'  
   map.product_list 'product', :controller => "products", :action => 'index'
