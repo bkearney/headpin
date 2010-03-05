@@ -37,8 +37,6 @@ class CandlepinObject < ActiveResource::Base
 
         
         def instantiate_collection(collection, prefix_options = {})
-            puts collection.inspect()
-            puts(element_name)
             Array items = Array.new() 
             if (! collection.nil?)
                 # Need to make the result an array of hashmaps in order to 
