@@ -1,7 +1,6 @@
 require "candlepin_object"
 
 class Product < CandlepinObject
-    self.context= "product"
     
     # Treat the attributes as a hashmap, and
     # not real objects

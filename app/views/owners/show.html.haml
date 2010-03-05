@@ -14,5 +14,5 @@
         %th Start Date
         %th End Date
 %h3 Entitlement Pools            
-=render :partial => "pools/pool_list", :locals => {:pools => @owner.pool}        
+=render :partial => "pools/pool_list", :locals => {:pools => @owner.my_pools}        
 = link_to 'Back', :back

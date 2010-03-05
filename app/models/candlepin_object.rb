@@ -3,15 +3,10 @@
 class CandlepinObject < ActiveResource::Base
 
     
-    self.site = "http://localhost:8080"
+    self.site = "http://localhost:8080/candlepin"
     self.format = :json
 
     class << self 
-
-        # would be nice to make these be more rails like.         
-        def context=(context)
-            @context=context
-        end
         
         def has_many(*children)
             @children = children.to_a
@@ -29,15 +24,21 @@ class CandlepinObject < ActiveResource::Base
             @attrs.nil? ? [] : @attrs
         end  
         
-        def element_path(id, prefix_options = {}, query_options = nil) 
-            "/candlepin/#{@context}/#{id}"
+        def element_path(id, prefix_options = {}, query_options = nil)
+          prefix_options, query_options = split_options(prefix_options) if query_options.nil?
+          "#{prefix(prefix_options)}#{collection_name}/#{id}#{query_string(query_options)}"
         end
+
         
-        def collection_path(prefix_options = {}, query_options = nil) 
-            "/candlepin/#{@context}/"
-        end    
+       def collection_path(prefix_options = {}, query_options = nil)
+         prefix_options, query_options = split_options(prefix_options) if query_options.nil?
+         "#{prefix(prefix_options)}#{collection_name}#{query_string(query_options)}"
+       end
+
         
         def instantiate_collection(collection, prefix_options = {})
+            puts collection.inspect()
+            puts(element_name)
             Array items = Array.new() 
             if (! collection.nil?)
                 # Need to make the result an array of hashmaps in order to 
@@ -46,8 +47,8 @@ class CandlepinObject < ActiveResource::Base
                 # handle the case of {key => {hash of attributes}} which is single object
                 # as well as {hash of attributes}
                 if (collection.is_a?(Hash))
-                  if (collection.key?("#{@context}") && collection.length == 1)
-                    inner_collection = collection["#{@context}"]
+                  if (collection.key?(element_name) && collection.length == 1)
+                    inner_collection = collection[element_name]
                   else
                     inner_collection = collection
                   end
