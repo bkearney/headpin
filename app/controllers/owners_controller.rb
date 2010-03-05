@@ -17,6 +17,7 @@ class OwnersController < ApplicationController
     def new
         @owner = Owner.new()
         @pool = Pool
+        puts("HELLO222!!!!!!")        
         respond_to do |format|
           format.html
           format.xml  { render :xml => @certificate }
@@ -25,7 +26,7 @@ class OwnersController < ApplicationController
     
     def create
         @owner = Owner.new(params[:owner])
-
+        puts("HELLO!!!!!!")
         respond_to do |format|
           if @owner.save
             flash[:notice] = 'Owner was successfully created.'

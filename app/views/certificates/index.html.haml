@@ -1,9 +1,9 @@
 %h1 Current Certificate
 
 - if @certificate.nil?
-    .none= link_to "Create the Cert", certificate_edit_url
+    .none= link_to "Create the Cert", certificates_edit_url
 - else
-    .none= link_to "Edit the Cert", certificate_edit_url
+    .none= link_to "Edit the Cert",   certificates_edit_url
     .text
         %pre
             :escaped

@@ -2,23 +2,12 @@ ActionController::Routing::Routes.draw do |map|
  
   # Try and recreate the candlepin api
   map.root :controller => "headpin"
-  map.certificate 'certificate', :controller => 'certificates', :action => 'index',
+  map.certificates 'certificates', :controller => 'certificates', :action => 'index',
                     :conditions => {:method => :get}
-  map.certificate 'certificate', :controller => 'certificates', :action => 'create',
+  map.certificates 'certificates', :controller => 'certificates', :action => 'create',
                     :conditions => {:method => :post}
-  map.certificate_edit 'certificate/edit', :controller => 'certificates', :action => 'edit'  
-  map.owner_list 'owner', :controller => "owners", :action => 'index',
-                    :conditions => {:method => :get}
-  map.owner_create 'owner', :controller => "owners", :action => 'create',
-                    :conditions => {:method => :post}                
-  map.owner_new 'owner/new', :controller => "owners", :action => 'new'
-  map.owner_delete 'owner/:id', :controller => "owners", :action => 'destroy',
-                    :conditions => {:method => :delete}         
-  map.owner 'owner/:id', :controller => "owners", :action => 'show'    
-  map.pool_list 'pool', :controller => "pools", :action => 'index'  
-  map.pool "pool/:id", :controller => "pools", :action => 'show'  
-  map.product_list 'product', :controller => "products", :action => 'index'
-  map.product 'product/:id', :controller => "products", :action => 'show'   
+  map.certificates_edit 'certificates/edit', :controller => 'certificates', :action => 'edit'
+  map.resources :owners, :pools, :products  
   map.rules 'rules', :controller => 'rules', :action => 'index',
                     :conditions => {:method => :get}  
   map.rules 'rules', :controller => 'rules', :action => 'create',

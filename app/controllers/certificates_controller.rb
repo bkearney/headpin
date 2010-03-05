@@ -24,7 +24,7 @@ class CertificatesController < ApplicationController
         respond_to do |format|
           if @certificate.save
             flash[:notice] = 'Certificate was successfully created.'
-            format.html { redirect_to(certificate_url) }
+            format.html { redirect_to(certificates_url) }
             format.xml  { render :xml => @certificate, :status => :created, :location => @certificate }
           else
             format.html { render :action => "new" }
