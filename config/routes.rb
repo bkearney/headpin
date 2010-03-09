@@ -7,12 +7,16 @@ ActionController::Routing::Routes.draw do |map|
   map.certificates 'certificates', :controller => 'certificates', :action => 'create',
                     :conditions => {:method => :post}
   map.certificates_edit 'certificates/edit', :controller => 'certificates', :action => 'edit'
-  map.resources :owners, :pools, :products  
+  map.resources :owners, :pools, :products, :consumers 
   map.rules 'rules', :controller => 'rules', :action => 'index',
                     :conditions => {:method => :get}  
   map.rules 'rules', :controller => 'rules', :action => 'create',
                     :conditions => {:method => :post}
-  map.rules_edit 'rules/edit', :controller => 'rules', :action => 'edit'                    
+  map.rules_edit 'rules/edit', :controller => 'rules', :action => 'edit'     
+  map.setup 'setup', :controller => 'setup', :action => 'show',
+                    :conditions => {:method => :get}  
+  map.setup 'setup', :controller => 'setup', :action => 'update',
+                    :conditions => {:method => :post}   
   map.status 'status', :controller => 'status', :action => 'ping'  
   
   # The priority is based upon order of creation: first created -> highest priority.

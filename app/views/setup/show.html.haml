@@ -1,0 +1,10 @@
+%h1 Headpin Setup
+
+- form_for :setup, :url => {:action => "update"} do |f|
+  %table
+    %tr
+      %th Candlpin Site
+      %td= f.text_field :site
+    %tr
+      %td
+      %td= f.submit 'update'

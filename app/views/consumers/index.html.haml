@@ -1,0 +1,15 @@
+%h1 Listing Consumers #{ link_to "(+)", new_owner_url}
+
+%table
+    %tr
+        %th Name
+        %th Id
+        %th Uuid        
+        %th Action
+    - @consumers.each do |consumer|
+        %tr
+            %td= link_to consumer.name, consumer
+            %td= consumer.id   
+            %td= consumer.uuid               
+            %td
+                = link_to 'delete', consumer, :method => "delete"

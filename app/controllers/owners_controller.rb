@@ -16,22 +16,20 @@ class OwnersController < ApplicationController
   
     def new
         @owner = Owner.new()
-        @pool = Pool
-        puts("HELLO222!!!!!!")        
+        @pool = Pool    
         respond_to do |format|
           format.html
-          format.xml  { render :xml => @certificate }
+          format.xml  { render :xml => @owner }
         end        
     end    
     
     def create
         @owner = Owner.new(params[:owner])
-        puts("HELLO!!!!!!")
         respond_to do |format|
           if @owner.save
             flash[:notice] = 'Owner was successfully created.'
             format.html { redirect_to(owner_url(:id => @owner.id)) }
-            format.xml  { render :xml => @owner, :status => :created, :location => @certificate }
+            format.xml  { render :xml => @owner, :status => :created}
           else
             format.html { render :action => "new" }
             format.xml  { render :xml => @owner.errors, :status => :unprocessable_entity }
