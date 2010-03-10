@@ -3,6 +3,11 @@ div.intro {
     padding-left: 150px ;    
 }
 
+ul.menu {
+	padding-left: 0px;
+	padding-top: 30px;
+}
+
 ul.menu li {
     list-style-type: none ;
     list-style-position: outside ;    

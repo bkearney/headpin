@@ -15,7 +15,7 @@ class ConsumersController < ApplicationController
   end
   
     def new
-        @consumer = Owner.new()    
+        @consumer = Consumer.new()    
         respond_to do |format|
           format.html
           format.xml  { render :xml => @consumer }
@@ -23,7 +23,7 @@ class ConsumersController < ApplicationController
     end    
     
     def create
-        @consumer = Owner.new(params[:consumer])
+        @consumer = Consumer.new(params[:consumer])
         respond_to do |format|
           if @consumer.save
             flash[:notice] = 'Consumer was successfully created.'
@@ -37,7 +37,7 @@ class ConsumersController < ApplicationController
     end
     
     def destroy
-        @consumer = Owner.find(params[:id])
+        @consumer = Consumer.find(params[:id])
         @consumer.destroy()
         
         respond_to do |format|

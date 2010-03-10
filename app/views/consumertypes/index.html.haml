@@ -1,0 +1,15 @@
+%h1 Listing Consumer Types #{ link_to "(+)", new_consumertype_url}
+
+%table
+    %tr
+        %th Label
+        %th ID 
+        %th Action
+    - @types.each do |type|
+        %tr
+            %td= type.label
+            %td= link_to type.Id, consumertype_url(type)
+            %td
+                = link_to 'delete', type, {:method=>:delete}
+                = link_to 'edit', edit_consumertype_url(type)                
+= link_to 'Back', :back
