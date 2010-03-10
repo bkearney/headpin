@@ -3,13 +3,13 @@
 %table
     %tr
         %th Name
-        %th Id
+        %th Type
         %th Uuid        
         %th Action
     - @consumers.each do |consumer|
         %tr
-            %td= link_to consumer.name, consumer
-            %td= consumer.id   
+            %td= link_to consumer.name, consumer_url(:uuid => consumer.uuid)
+            %td= consumer.type_label   
             %td= consumer.uuid               
             %td
                 = link_to 'delete', consumer, :method => "delete"

@@ -1,0 +1,15 @@
+%h1 Consumer #{@consumer.uuid}
+%table
+    %tr
+        %th Name
+        %td= @consumer.name
+    %tr
+        %th Id
+        %td= @consumer.id
+    %tr
+        %th Type
+        %td= @consumer.type_label        
+    %tr
+        %th uuid
+        %td= @consumer.uuid        
+= link_to 'Back', :back

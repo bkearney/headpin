@@ -7,7 +7,15 @@ ActionController::Routing::Routes.draw do |map|
   map.certificates 'certificates', :controller => 'certificates', :action => 'create',
                     :conditions => {:method => :post}
   map.certificates_edit 'certificates/edit', :controller => 'certificates', :action => 'edit'
-  map.resources :owners, :pools, :products, :consumers, :consumertypes 
+  map.resources :owners, :pools, :products, :consumertypes
+  map.consumers 'consumers', :controller => 'consumers', :action => 'index',
+                    :conditions => {:method => :get}
+  map.consumers 'consumers', :controller => 'consumers', :action => 'create',
+                    :conditions => {:method => :post}                    
+  map.new_consumer 'consumers/new', :controller => 'consumers', :action => 'new',
+                    :conditions => {:method => :get}                          
+  map.consumer 'consumers/:uuid', :controller => 'consumers', :action => 'show',
+                    :conditions => {:method => :get}                                              
   map.rules 'rules', :controller => 'rules', :action => 'index',
                     :conditions => {:method => :get}  
   map.rules 'rules', :controller => 'rules', :action => 'create',

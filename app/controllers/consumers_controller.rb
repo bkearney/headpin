@@ -6,7 +6,7 @@ class ConsumersController < ApplicationController
   end
   
   def show
-    @consumer = Consumer.find(params[:id])
+    @consumer = Consumer.find(params[:uuid])
     
     respond_to do |format|
       format.html
@@ -15,7 +15,11 @@ class ConsumersController < ApplicationController
   end
   
   def new
-    @consumer = Consumer.new()    
+    @consumer = Consumer.new()  
+    @types = {}
+    Consumertype.find(:all).each do |type|
+      @types[type.label] = type.id
+    end
     respond_to do |format|
       format.html
       format.xml  { render :xml => @consumer }
@@ -23,11 +27,16 @@ class ConsumersController < ApplicationController
   end    
   
   def create
-    @consumer = Consumer.new(params[:consumer])
+    attributes = params[:consumer]
+    if attributes["type_id"]
+      attributes["type"]= Consumertype.find(attributes["type_id"])
+      attributes.delete "type_id"
+    end
+    @consumer = Consumer.new(attributes)
     respond_to do |format|
       if @consumer.save
         flash[:notice] = 'Consumer was successfully created.'
-        format.html { redirect_to(owner_url(:id => @consumer.id)) }
+        format.html { redirect_to(consumer_url(:uuid => @consumer.uuid)) }
         format.xml  { render :xml => @consumer, :status => :created }
       else
         format.html { render :action => "new" }

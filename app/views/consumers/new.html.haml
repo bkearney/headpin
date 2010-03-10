@@ -1,5 +1,17 @@
 %h1 Create A New Consumer
 - form_for @consumer do |f|
-    Name
-    = f.text_field :name
-    = f.submit 'update'
+  %table
+    %tr
+      %td
+        = f.label "Name"
+        = f.text_field :name
+    %tr
+      %td
+        = f.label "Uuid"
+        = f.text_field :uuid        
+    %tr 
+      %td
+        = f.label "Type"
+        = f.select("type_id", @types)
+    %tr
+      %td=f.submit 'update'
