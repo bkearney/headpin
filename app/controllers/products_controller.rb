@@ -1,16 +1,16 @@
 class ProductsController < ApplicationController
-    layout "headpin"
-
-    def index
-        @products = Product.find(:all)
+  layout "headpin"
+  
+  def index
+    @products = Product.find(:all)
+  end
+  
+  def show
+    @product = Product.find(params[:id])
+    
+    respond_to do |format|
+      format.html
+      format.xml  { render :xml => @product }
     end
-
-    def show
-        @product = Product.find(params[:id])
-
-        respond_to do |format|
-            format.html
-            format.xml  { render :xml => @product }
-        end
-    end
+  end
 end
