@@ -3,7 +3,8 @@
         %th Active
         %th ID
         %th Product
-        %th Max Members
+        %th Quantity
+        %th Consumed
         %th Start Date
         %th End Date        
     - pools.each do |pool|
@@ -11,6 +12,7 @@
             %td= pool.activeSubscription
             %td= link_to pool.Id, pool if pool.Id
             %td= link_to pool.productId, product_url(:id =>   pool.productId)
-            %td= pool.maxMembers
+            %td= pool.quantity
+            %td= pool.consumed            
             %td= pool.startDate
             %td= pool.endDate

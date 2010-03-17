@@ -38,8 +38,6 @@ class CandlepinObject < ActiveResource::Base
     
     def instantiate_collection(collection, prefix_options = {})
       Array items = Array.new() 
-      puts (collection.class)
-      puts (collection[1].class)
       if (! collection.nil?)
         # Need to make the result an array of hashmaps in order to 
         # parse it well.
@@ -50,13 +48,13 @@ class CandlepinObject < ActiveResource::Base
         # as well as {hash of attributes}
         if (collection.is_a?(Hash))
           if (collection.key?(element_name) && collection.length == 1)
-            inner_collection = collection[element_name]
+            inner_collection << collection[element_name]
           else
             inner_collection << collection
           end
         end
         # Handle the case of a single string. This may be a bit of a hack :)
-        inner_collection = {"value" => collection} if collection.is_a?(String)                   
+        inner_collection << {"value" => collection} if collection.is_a?(String)                   
         # We need this to be an array of hashs {key => [array of hashses]}, 
         # so if it is a single hash we array it.
         #inner_collection = [] << inner_collection if inner_collection.is_a?(Hash)   

@@ -1,7 +1,8 @@
 %h1 Candlepin Status
 
-- if @status && @status.result == "true"
+- if @status && @status.result
   %h2.green Candlepin is Alive!
 - else
   %h2.red Candlepin is Dead
+  %h2=@status.result.class
 		
