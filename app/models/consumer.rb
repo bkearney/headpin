@@ -23,7 +23,7 @@ class Consumer < CandlepinObject
   end    
   
   def keyString
-    self.idCert.key self.idCert
+    OpenSSL::PKey::RSA.new(self.idCert.key).to_text if self.idCert
   end
   
   def certificateString
