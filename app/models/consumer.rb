@@ -1,5 +1,4 @@
 require "candlepin_object"
-require "openssl"
 
 class Consumer < CandlepinObject
   self.attrs :name, :uuid, :type
@@ -23,10 +22,10 @@ class Consumer < CandlepinObject
   end    
   
   def keyString
-    OpenSSL::PKey::RSA.new(self.idCert.key).to_text if self.idCert
+    self.idCert.keyString if self.idCert
   end
   
   def certificateString
-    OpenSSL::X509::Certificate.new(self.idCert.cert).to_text if self.idCert
+    self.idCert.certificateString if self.idCert
   end  
 end

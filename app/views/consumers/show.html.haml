@@ -19,5 +19,14 @@
     %tr  
         %th key
         %td
-            %pre= @consumer.keyString              
+            %pre= @consumer.keyString
+    %tr
+        %th Facts
+        %td  
+    - @consumer.facts.entry.each do |fact|
+        %tr
+            %td
+            %td= fact.key
+            %td= fact.value  
+                
 = link_to 'Back', :back

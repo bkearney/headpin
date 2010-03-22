@@ -1,12 +1,24 @@
+#require 'mappings'
 # See http://www.quarkruby.com/2008/3/11/consume-non-rails-style-rest-apis
 # for much of the detils behind this method
 class CandlepinObject < ActiveResource::Base
   
-  
   self.site = "http://localhost:8080/candlepin"
   self.format = :json
   
+  #import mappings
+  MAPPINGS = {"Type" => "Consumertype",
+    "IdCert" => "IdentityCertificate",  
+    "Facts" => "ConsumerFacts",     
+  }
+  
   class << self 
+    
+    def const_get(sym)
+      return Kernel.const_get(MAPPINGS[sym]) if MAPPINGS[sym]
+      puts(super(sym).class)
+      return super(sym)
+    end
     
     def has_many(*children)
       @children = children.to_a
@@ -104,4 +116,6 @@ class CandlepinObject < ActiveResource::Base
   def encode(options={})
     self.class.format.encode({self.class.element_name => attributes}, options)
   end  
+  
+  TYPE = Consumertype
 end
