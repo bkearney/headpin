@@ -11,5 +11,13 @@
         %td= @consumer.type_label        
     %tr
         %th uuid
-        %td= @consumer.uuid        
+        %td= @consumer.uuid
+    %tr  
+        %th certificate
+        %td
+            %pre= @consumer.certificateString        
+    %tr  
+        %th key
+        %td
+            %pre= @consumer.keyString              
 = link_to 'Back', :back

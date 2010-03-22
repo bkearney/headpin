@@ -1,4 +1,5 @@
 require "candlepin_object"
+require "openssl"
 
 class Consumer < CandlepinObject
   self.attrs :name, :uuid, :type
@@ -20,4 +21,12 @@ class Consumer < CandlepinObject
   def element_path(options = nil)
     self.class.element_path(self.uuid, options || prefix_options)
   end    
+  
+  def keyString
+    self.idCert.key self.idCert
+  end
+  
+  def certificateString
+    OpenSSL::X509::Certificate.new(self.idCert.cert).to_text if self.idCert
+  end  
 end
