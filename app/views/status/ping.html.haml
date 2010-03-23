@@ -2,6 +2,13 @@
 
 - if @status && @status.result
   %h2.green Candlepin is Alive!
+  %table
+    %tr
+      %td Version
+      %td= @status.version
+    %tr
+      %td Git Hash
+      %td= @status.hash_string
 - else
   %h2.red Candlepin is Dead
   %h2=@status.result.class
