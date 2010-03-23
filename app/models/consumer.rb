@@ -1,7 +1,7 @@
 require "candlepin_object"
 
 class Consumer < CandlepinObject
-  self.attrs :name, :uuid, :type
+  self.attrs :name, :uuid, :type, :facts
   
   def type_id
     return consumertype.id if consumertype
@@ -28,4 +28,13 @@ class Consumer < CandlepinObject
   def certificateString
     self.idCert.certificateString if self.idCert
   end  
+  
+  #TODO THIS IS A HACK
+  def load(attributes)
+    super(attributes)
+    if self.facts.is_a?(String)
+      self.facts= ConsumerFacts.new() 
+      self.facts.entry = []
+    end
+  end
 end

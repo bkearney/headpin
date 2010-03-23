@@ -33,6 +33,15 @@ class ConsumersController < ApplicationController
       attributes.delete "type_id"
     end
     @consumer = Consumer.new(attributes)
+    
+    
+    # Set up the facts
+    @consumer.facts= ConsumerFacts.new()
+    facts = []
+    params[:entry].each() do |k,v|
+      facts << ConsumerFacts::Entry.new(v) if v["key"] != ""
+    end
+    @consumer.facts.entry= facts
     respond_to do |format|
       if @consumer.save
         flash[:notice] = 'Consumer was successfully created.'

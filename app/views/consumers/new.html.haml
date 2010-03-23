@@ -1,17 +1,26 @@
 %h1 Create A New Consumer
-- form_for @consumer do |f|
+- form_tag :controller => 'consumers', :action => 'create', :method => :post do 
   %table
     %tr
       %td
-        = f.label "Name"
-        = f.text_field :name
+        = label_tag "Name"
+        = text_field_tag "consumer[name]"
     %tr
       %td
-        = f.label "Uuid"
-        = f.text_field :uuid        
+        = label_tag "Uuid"
+        = text_field_tag "consumer[uuid]"       
     %tr 
       %td
-        = f.label "Type"
-        = f.select("type_id", @types)
+        = label_tag "Type"
+        = select_tag("consumer[type_id]", options_for_select(@types))
+    - (1..10).each do |num|
+      %tr
+        %td
+          = label_tag "Fact #{num}"
+          = text_field_tag("entry[#{num}[key]]")
+        %td
+          = label_tag "Value"
+          = text_field_tag("entry[#{num}[value]]")
+          
     %tr
-      %td=f.submit 'update'
+      %td=submit_tag 'update'
