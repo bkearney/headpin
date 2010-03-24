@@ -3,8 +3,14 @@
 - form_for :setup, :url => {:action => "update"} do |f|
   %table
     %tr
-      %th Candlpin Site
+      %th= f.label "Candlpin Site"
       %td= f.text_field :site
+    %tr
+      %th= f.label "Username"
+      %td= f.text_field :user  
+    %tr
+      %th= f.label "Password"
+      %td= f.text_field :password            
     %tr
       %td
       %td= f.submit 'update'

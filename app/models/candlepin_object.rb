@@ -3,7 +3,9 @@
 # for much of the detils behind this method
 class CandlepinObject < ActiveResource::Base
   
-  self.site = "http://localhost:8080/candlepin"
+  self.site = Constants.site
+  self.user = Constants.user
+  self.password = Constants.password
   self.format = :json
   
   #import mappings
@@ -15,6 +17,7 @@ class CandlepinObject < ActiveResource::Base
   class << self 
     
     def const_get(sym)
+      puts ("in const get")
       return Kernel.const_get(MAPPINGS[sym]) if MAPPINGS[sym]
       puts(super(sym).class)
       return super(sym)
