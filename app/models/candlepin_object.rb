@@ -17,9 +17,7 @@ class CandlepinObject < ActiveResource::Base
   class << self 
     
     def const_get(sym)
-      puts ("in const get")
       return Kernel.const_get(MAPPINGS[sym]) if MAPPINGS[sym]
-      puts(super(sym).class)
       return super(sym)
     end
     

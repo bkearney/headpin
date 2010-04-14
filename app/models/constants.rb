@@ -1,7 +1,7 @@
 class Constants
   @@site ="http://localhost:8080/candlepin"
-  @@user = "f"
-  @@password = "f"
+  @@user = "bk"
+  @@password = "password"
   
   def self.site
     return @@site

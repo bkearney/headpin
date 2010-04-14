@@ -4,10 +4,12 @@
     %tr
         %th Name
         %th Id
+        %th Key
         %th Action        
     - @owners.each do |owner|
         %tr
-            %td= link_to owner.name, owner
+            %td= link_to owner.displayName, owner
             %td= owner.id   
+            %td= owner.key
             %td
                 = link_to 'delete', owner, :method => "delete"

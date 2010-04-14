@@ -1,18 +1,14 @@
-%h1 Owner: #{@owner.name}
+%h1 Owner: #{@owner.displayName}
 %table
     %tr
         %td ID:
         %td=@owner.id
     %tr
+        %td key:
+        %td=@owner.key 
+    %tr
         %td Name:
-        %td=@owner.name 
-    %tr
-        %td Pools:
-    %tr
-        %th Product
-        %th Quantity
-        %th Start Date
-        %th End Date
+        %td=@owner.displayName         
 %h3 Entitlement Pools            
 =render :partial => "pools/pool_list", :locals => {:pools => @owner.my_pools}        
 = link_to 'Back', :back

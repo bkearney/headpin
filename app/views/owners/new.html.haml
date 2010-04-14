@@ -1,4 +1,14 @@
 %h1 Create A New Owner
-- form_for @owner do |f|
-    = f.text_field :name
-    = f.submit 'update'
+%table
+  - form_for @owner do |f|
+    %tr
+      %td
+        = f.label "Name:"
+        = f.text_field :displayName
+    %tr
+      %td
+        = f.label "Key:"    
+        = f.text_field :key
+    %tr
+      %td    
+        = f.submit 'update'
