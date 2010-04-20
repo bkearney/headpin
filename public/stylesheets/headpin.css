@@ -1,44 +1,5 @@
-div.intro {
-    padding-top: 30 ;
-    padding-left: 150px ;    
-}
-
-ul.menu {
-	padding-left: 0px;
-	padding-top: 30px;
-}
-
-ul.menu li {
-    list-style-type: none ;
-    list-style-position: outside ;    
-}
-
-div.main {
-    width: 100%;
-}
-div.left {
-    width:100px ;
-    float: left ;
-}
-
-div.right {
-    margin-left: 130px ;
-}
-
-h1 a {
-    text-decoration: none ;
-}
-
-.red {
-	color: #FF0000;
-}
-
-.green {
-	color: #00FC1D;
-}
-
-
-body { background-color: #fff; color: #333; }
+body { background-color: #fff; color: #333; 	margin: 0;
+	padding: 0;}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;
@@ -90,4 +51,65 @@ a:hover { color: #fff; background-color:#000; }
 #errorExplanation ul li {
   font-size: 12px;
   list-style: square;
+}
+
+body {
+}
+div.intro {
+    padding-top: 30 ;
+    padding-left: 0px ;    
+}
+
+ul.menu {
+	padding-left: 0px;
+	padding-top: 30px;
+}
+
+ul.menu li {
+    list-style-type: none ;
+    list-style-position: outside ;    
+}
+
+div#main {
+    width: 100%;
+	border: 0;
+	padding: 0;
+}
+
+div#top {
+	width: 100%;
+	height: 10px;
+	background-color: #CCCCCC;
+}
+div#left {
+    width:120px ;
+	padding-left: 10px;
+    float: left ;
+	border-right: 2px solid;
+	border-right-color: #EEEEEE;	
+}
+
+div#right {
+    margin-left: 150px ;
+}
+
+div#bottom {
+	width: 100%;
+	background-color: #CC0000;
+}
+
+div.logo {
+	float: right;
+	margin-top: 10px;
+}
+h1 a {
+    text-decoration: none ;
+}
+
+.red {
+	color: #FF0000;
+}
+
+.green {
+	color: #00FC1D;
 }

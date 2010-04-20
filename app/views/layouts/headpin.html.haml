@@ -5,8 +5,11 @@
     %title Headpin
     = stylesheet_link_tag "headpin"
 %body
-    .main 
-        .left
+    #main 
+        #top
+            .logo
+                =image_tag "headpin.png", :size=>"32x81"          
+        #left         
             %ul.menu                 
                 %li= link_to "Certificate", certificates_url
                 %li= link_to "Consumers", consumers_url
@@ -19,5 +22,7 @@
                 %li
                     %br
                 %li= link_to "Setup", setup_url         
-        .right
+                
+        #right
             = yield
+        #bottom
