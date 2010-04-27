@@ -8,7 +8,7 @@
         %td=@pool.activeSubscription 
     %tr
         %td Product:
-        %td=link_to @pool.productId, product_url(:id =>  @pool.productId)       
+        %td=link_to @pool.productName, product_url(:id =>  @pool.productId)       
     %tr
         %td Max Members:
         %td=@pool.maxMembers         

@@ -2,7 +2,7 @@
     %tr
         %th Active
         %th ID
-        %th Product
+        %th Product Name        
         %th Quantity
         %th Consumed
         %th Start Date
@@ -11,7 +11,7 @@
         %tr
             %td= pool.activeSubscription
             %td= link_to pool.Id, pool if pool.Id
-            %td= link_to pool.productId, product_url(:id =>   pool.productId)
+            %td= link_to pool.productName, product_url(:id =>   pool.productId)
             %td= pool.quantity
             %td= pool.consumed            
             %td= pool.startDate
