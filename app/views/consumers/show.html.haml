@@ -13,15 +13,17 @@
         %th uuid
         %td= @consumer.uuid
     %tr  
-        %th certificate
-        %td
-            <a href="#" onclick="Effect.Appear('cert'); return true;" id="certShow">Show the Cert</a>             
+        %th 
+            <a name="cert" href="#name" onclick="Effect.Appear('cert', { duration: .5 }); Effect.Appear('certHide',{ duration: .5 }); Effect.Fade('certShow',{ duration: .5 }); return true;" id="certShow">Certificate (show)</a>
+            <a name="cert" href="#name" onclick="Effect.Fade('cert',{ duration: .5 }); Effect.Fade('certHide',{ duration: .5 }); Effect.Appear('certShow',{ duration: .5 }); return true;" id="certHide"; style="display:none;">Certificate (hide)</a>
+        %td     
             #cert{"style" => "display:none;"}
                 %pre= @consumer.certificateString        
     %tr  
-        %th key  
-        %td
-            <a href="#" onclick="Effect.Appear('key'); return true;" id="keyShow">Show the Key</a>          
+        %th
+            <a name="key" href="#key" onclick="Effect.Appear('key',{ duration: .5 }); Effect.Appear('keyHide',{ duration: .5 }); Effect.Fade('keyShow',{ duration: .5 }); return true;" id="keyShow">Key (show)</a>
+            <a name="key" href="#key" onclick="Effect.Fade('key',{ duration: .5 }); Effect.Fade('keyHide',{ duration: .5 }); Effect.Appear('keyShow',{ duration: .5 }); return true;" id="keyHide"; style="display:none;">Key (hide)</a>  
+        %td 
             #key{"style" => "display:none;"}
                 %pre= @consumer.keyString               
     %tr
