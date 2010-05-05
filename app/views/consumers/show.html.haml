@@ -15,11 +15,15 @@
     %tr  
         %th certificate
         %td
-            %pre= @consumer.certificateString        
+            <a href="#" onclick="Effect.Appear('cert'); return true;" id="certShow">Show the Cert</a>             
+            #cert{"style" => "display:none;"}
+                %pre= @consumer.certificateString        
     %tr  
-        %th key
+        %th key  
         %td
-            %pre= @consumer.keyString
+            <a href="#" onclick="Effect.Appear('key'); return true;" id="keyShow">Show the Key</a>          
+            #key{"style" => "display:none;"}
+                %pre= @consumer.keyString               
     %tr
         %th Facts
         %td  
