@@ -115,7 +115,7 @@ class CandlepinObject < ActiveResource::Base
   end
   
   def encode(options={})
-    self.class.format.encode({self.class.element_name => attributes}, options)
+    self.class.format.encode(attributes, options)
   end  
  
 end

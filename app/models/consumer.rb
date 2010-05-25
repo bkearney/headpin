@@ -29,6 +29,10 @@ class Consumer < CandlepinObject
     self.idCert.certificateString if self.idCert
   end  
   
+  def my_entitlements
+    return Entitlement.find(:all, :params => {:consumer => self.uuid})
+  end  
+  
   #TODO THIS IS A HACK
   def load(attributes)
     super(attributes)
