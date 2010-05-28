@@ -1,0 +1,16 @@
+%table
+    %tr
+        %th Type
+        %th Name
+        %th Hash        
+        %th Vendor
+        %th Content URL
+        %th GPG URL
+    - contents.each do |content|
+        %tr
+            %td= content.content_type
+            %td= content.name
+            %td= content.content_hash
+            %td= content.vendor
+            %td= content.contentUrl
+            %td= content.gpgUrl        

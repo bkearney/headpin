@@ -16,11 +16,26 @@
             %td
             %td= attr.name
             %td= attr.value
-    %tr
-        %td Sub Products
-    %tr
-        %td
-        %td
-        %td=render :partial => "products/product_list", :locals => {:products => @product.childProducts}        
+    - if @product.childProducts.size > 0
+        %tr
+            %td Sub Products    
+        %tr
+            %td
+            %td
+            %td=render :partial => "products/product_list", :locals => {:products => @product.childProducts} 
+    - if @product.enabledContent.size > 0
+        %tr
+            %td Enabled Content   
+        %tr
+            %td
+            %td
+            %td=render :partial => "products/content_list", :locals => {:contents => @product.enabledContent}    
+    - if @product.content.size > 0
+        %tr
+            %td Content   
+        %tr
+            %td
+            %td
+            %td=render :partial => "products/content_list", :locals => {:contents => @product.content}   
     %tr
         %td=link_to 'Back', :back
