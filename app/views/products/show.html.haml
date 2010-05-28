@@ -4,15 +4,23 @@
         %td ID:
         %td=@product.id
     %tr
+        %td Hash:
+        %td=@product.product_hash 
+    %tr
         %td Label:
-        %td=@product.label 
+        %td=@product.label         
     %tr
         %td Attributes:
-    -@product.productAttributes.each do |key, value|
+    -@product.product_attributes.each do |attr|
         %tr
             %td
-            %td= key
-            %td= value
+            %td= attr.name
+            %td= attr.value
+    %tr
+        %td Sub Products
+    %tr
+        %td
+        %td
+        %td=render :partial => "products/product_list", :locals => {:products => @product.childProducts}        
     %tr
         %td=link_to 'Back', :back
-/m

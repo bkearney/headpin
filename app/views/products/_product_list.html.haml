@@ -1,0 +1,14 @@
+%table
+    %tr
+        %th Name
+        %th ID
+        %th Hash        
+        %th Label
+        %th Attrs
+    - products.each do |product|
+        %tr
+            %td= link_to product.name, product_url(:id => product.id)
+            %td= product.id
+            %td= product.product_hash
+            %td= product.label
+            %td= product.product_attributes.size()
