@@ -1,6 +1,6 @@
 require "grid_data"
 class ConsumertypesController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   def index
     respond_to do |format|

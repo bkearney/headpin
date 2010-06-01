@@ -1,5 +1,5 @@
 class StatusController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   # Need to Restify this
   def ping

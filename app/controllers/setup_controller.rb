@@ -1,6 +1,6 @@
 require "models/constants.rb"
 class SetupController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   def show
     @setup = Setup.new() 

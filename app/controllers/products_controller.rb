@@ -1,5 +1,5 @@
 class ProductsController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   def index
     @products = Product.find(:all)

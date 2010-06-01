@@ -1,5 +1,5 @@
 class PoolsController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   def index
     @pools = Pool.find(:all)

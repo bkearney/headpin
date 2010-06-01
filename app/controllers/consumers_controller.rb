@@ -1,5 +1,5 @@
 class ConsumersController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   def index
     @consumers = Consumer.find(:all)

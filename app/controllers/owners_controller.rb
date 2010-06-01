@@ -1,5 +1,5 @@
 class OwnersController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   def index
     @owners = Owner.find(:all)

@@ -1,5 +1,5 @@
 class RulesController < ApplicationController
-  layout "headpin"
+  layout "naked"
   
   def index
     @rules = Rules.find(:first)
