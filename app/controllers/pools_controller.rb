@@ -2,7 +2,15 @@ class PoolsController < ApplicationController
   layout "naked"
   
   def index
-    @pools = Pool.find(:all)
+    respond_to do |format|
+      format.html
+      format.json  {
+        @pools = Pool.find(:all)
+        data = GridData.new() 
+        data.set_records(@pools)        
+        render :json => data 
+      }      
+    end    
   end
   
   def show

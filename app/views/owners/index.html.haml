@@ -4,37 +4,35 @@
 #pager
   
 :javascript
-    var lastsel; 
-    //jQuery(document).ready(function(){ 
-      jQuery("#owners").jqGrid({
-        url:'/owners.json',
-        jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
-        datatype: 'json',
-        mtype: 'GET',
-        colNames:['ID', 'Key','Name', 'Created', 'Updated'],
-        colModel :[ 
-          {name:'id', label:"ID", width:55,},        
-          {name:'key', label:"Key", width:55,editable: true}, 
-          {name:'displayName', label:'Name', width:200, editable: true},
-          {name:'created', label:'Created', width:150, formatter: 'date'},
-          {name:'updated', label:'Updated', width:150, formatter: 'date'},
-        ],
-        altRows:false,
-        rowNum:10,
-        rowList:[10,20,30],
-        sortname: 'label',
-        sortorder: 'desc',
-        viewrecords: false,
-        forceFit: true,   
-        editurl:"/owners",
-        pager: "#pager",
-        loadonce: false
-      });
-      jQuery("#owners").jqGrid('navGrid',"#pager",{edit:true,add:true,del:true, view: false},
-      	{closeAfterEdit: true}, // edit
-      	{closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
-      	{}, // delete
-      	{}, // search
-      	{} // view
-      ); 
-    //}); 
+  var lastsel; 
+  jQuery("#owners").jqGrid({
+    url:'/owners.json',
+    jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
+    datatype: 'json',
+    mtype: 'GET',
+    colNames:['ID', 'Key','Name', 'Created', 'Updated'],
+    colModel :[ 
+      {name:'id', label:"ID", width:55,},        
+      {name:'key', label:"Key", width:55,editable: true}, 
+      {name:'displayName', label:'Name', width:200, editable: true},
+      {name:'created', label:'Created', width:150, formatter: 'date'},
+      {name:'updated', label:'Updated', width:150, formatter: 'date'},
+    ],
+    altRows:false,
+    rowNum:10,
+    rowList:[10,20,30],
+    sortname: 'label',
+    sortorder: 'desc',
+    viewrecords: false,
+    forceFit: true,   
+    editurl:"/owners",
+    pager: "#pager",
+    loadonce: false
+  });
+  jQuery("#owners").jqGrid('navGrid',"#pager",{edit:true,add:true,del:true, view: false},
+  	{closeAfterEdit: true}, // edit
+  	{closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
+  	{}, // delete
+  	{}, // search
+  	{} // view
+  ); 

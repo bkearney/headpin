@@ -1,3 +1,41 @@
 %h1 Listing Entitlement Pools
 
-=render :partial => "pools/pool_list", :locals => {:pools => @pools}
+%table#pools
+#pager
+  
+:javascript
+  var lastsel; 
+  jQuery("#pools").jqGrid({
+    url:'/pools.json',
+    jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
+    datatype: 'json',
+    mtype: 'GET',
+    colNames:['ID', 'Product Name','Active', 'Quantity', 'Consumed', 'Start', 'End', 'Created', 'Updated'],
+    colModel :[ 
+      {name:'id', label:"ID", width:20,},        
+      {name:'productName', label:"Product Name", width:300},
+      {name:'active', label:"Active", width:50},
+      {name:'quantity', label:'Quantity', width:50,},
+      {name:'consumed', label:'Consumed', width:50,},
+      {name:'startDate', label:'Start', width:130, formatter: 'date'},
+      {name:'endDate', label:'End', width:130, formatter: 'date'},
+      {name:'created', label:'Created', width:130, formatter: 'date'},
+      {name:'updated', label:'Updated', width:130, formatter: 'date'},
+    ],
+    altRows:false,
+    rowNum:30,
+    rowList:[30,60,90],
+    sortname: 'label',
+    sortorder: 'desc',
+    viewrecords: true,
+    forceFit: true,   
+    pager: "#pager",
+    loadonce: false
+  });
+  jQuery("#pools").jqGrid('navGrid',"#pager",{edit:false, add:false, del:false, view:true},
+  	{closeAfterEdit: true}, // edit
+  	{closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
+  	{}, // delete
+  	{}, // search
+  	{} // view
+  ); 
