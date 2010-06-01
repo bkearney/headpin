@@ -120,4 +120,10 @@ class CandlepinObject < ActiveResource::Base
     self.class.format.encode(attributes, options)
   end  
  
+  def update_attributes(new_attributes)
+    @attributes.each do |key, value| 
+      @attributes[key] = new_attributes[key] if new_attributes[key]
+      @attributes[key] = new_attributes[key] if new_attributes[key.to_sym]      
+    end
+  end
 end

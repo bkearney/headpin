@@ -1,15 +1,43 @@
-%h1 Listing Consumer Types #{ link_to "(+)", new_consumertype_url}
-
-%table
-    %tr
-        %th Label
-        %th ID 
-        %th Action
-    - @types.each do |type|
-        %tr
-            %td= type.label
-            %td= link_to type.Id, consumertype_url(type)
-            %td
-                = link_to 'delete', type, {:method=>:delete}
-                = link_to 'edit', edit_consumertype_url(type)                
+%h1 Listing Consumer Types
+  
 = link_to 'Back', :back
+
+%table#t2
+#pager
+  
+:javascript
+    var lastsel; 
+    jQuery(document).ready(function(){ 
+      jQuery("#t2").jqGrid({
+        url:'/consumertypes.json',
+        jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
+        datatype: 'json',
+        mtype: 'GET',
+        colNames:['ID','Label', 'Created', 'Updated'],
+        colModel :[ 
+          {name:'id', label:"0", width:55,}, 
+          {name:'label', label:'Label', width:200, editable: true},
+          {name:'created', label:'Created', width:150, formatter: 'date'},
+          {name:'updated', label:'Updated', width:150, formatter: 'date'},
+        ],
+        altRows:false,
+        rowNum:10,
+        rowList:[10,20,30],
+        sortname: 'label',
+        sortorder: 'desc',
+        viewrecords: false,
+        forceFit: true,   
+        editurl:"/consumertypes",
+        pager: "#pager",
+        loadonce: false
+      });
+      jQuery("#t2").jqGrid('navGrid',"#pager",{edit:true,add:true,del:true, view: false},
+      	{closeAfterEdit: true}, // edit
+      	{closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
+      	{}, // delete
+      	{}, // search
+      	{} // view
+      ); 
+    }); 
+  
+  

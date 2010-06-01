@@ -1,72 +1,37 @@
+require "grid_data"
 class ConsumertypesController < ApplicationController
   layout "headpin"
   
   def index
-    @types = Consumertype.find(:all)
-  end
-  
-  def show
-    @type = Consumertype.find(params[:id])
-    
     respond_to do |format|
       format.html
-      format.xml  { render :xml => @type }
-    end
+      format.json  {
+        @types = Consumertype.find(:all)
+        data = GridData.new() 
+        data.set_records(@types)        
+        render :json => data 
+      }      
+    end    
   end
   
-  def edit
-    @type = Consumertype.find(params[:id])
-    
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @type }
-    end
-  end  
   
   def update
-    @type = Consumertype.find(params[:id])
-    @type.label= params[:consumertype][:label]
-    respond_to do |format|
-      if @type.save
-        flash[:notice] = 'ConsumerType was successfully created.'
-        format.html { redirect_to(consumertype_url(@type)) }
-        format.xml  { render :xml => @type, :status => :created}
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @type.errors, :status => :unprocessable_entity }
-      end
+    id = params[:id]
+    oper = params[:oper]
+    case oper
+      when "edit"
+        type = Consumertype.find(params[:id])
+        type.update_attributes(params)
+        type.save
+      when "del"
+        type = Consumertype.find(params[:id])
+        type.destroy
+      when "add"
+        type = Consumertype.new()
+        type.update_attributes(params)
+        type.save()
     end
+    render :nothing => true
   end    
   
-  def new
-    @type = Consumertype.new()  
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @type }
-    end        
-  end    
-  
-  def create
-    @type = Consumertype.new(params[:consumertype])
-    respond_to do |format|
-      if @type.save
-        flash[:notice] = 'ConsumerType was successfully created.'
-        format.html { redirect_to(consumertype_url(@type)) }
-        format.xml  { render :xml => @type, :status => :created}
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @type.errors, :status => :unprocessable_entity }
-      end
-    end
-  end
-  
-  def destroy
-    @type = Consumertype.find(params[:id])
-    @type.destroy()
-    
-    respond_to do |format|
-      format.html { redirect_to(consumertypes_url) }
-      format.xml  { head :ok }
-    end
-  end
 end
