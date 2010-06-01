@@ -5,17 +5,25 @@
         = stylesheet_link_tag "custom-theme/jquery-ui-1.8.1.custom"
         = stylesheet_link_tag "ui.jqgrid.css"    
         = stylesheet_link_tag "headpin"
-        = stylesheet_link_tag "jqModal"       
+        = stylesheet_link_tag "jqModal"   
+        = stylesheet_link_tag "jquery.jgrowl"    
         = javascript_include_tag "jquery-1.4.2.min"
         = javascript_include_tag "jquery-ui-1.8.1.custom.min"
-        = javascript_include_tag "jqModal"           
+        = javascript_include_tag "jqModal"         
+        = javascript_include_tag "jquery.jgrowl"    
         = javascript_include_tag "grid.locale-en"    
         = javascript_include_tag "jquery.jqGrid.min"      
     %title Headpin
-%body
-    :javascript
-        $(function() {
+    :javascript           
+        $(document).ready(function() {
+          $.ajaxSetup({error: function(xhr, status, error) {$.jGrowl(xhr.status + ' ' + xhr.statusText);}});             
           $("#tabs").tabs({
+                ajaxOptions: {
+                    error: function(xhr, status, index, anchor) {
+                        alert("FDOOO");
+                        $(anchor.hash).html("Couldn't load this tab. We'll try to fix this as soon as possible. If this wouldn't be a demo.");
+                    }
+                },
               load: function(event, ui) {
                   $('a', ui.panel).click(function() {
                       $(ui.panel).load(this.href);
@@ -23,7 +31,10 @@
                   });
               }
           });
-        });    
+        });
+        
+%body
+
       
     #tabs         
         %ul.menu                 

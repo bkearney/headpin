@@ -30,7 +30,8 @@
     viewrecords: true,
     forceFit: true,   
     pager: "#pager",
-    loadonce: false
+    loadonce: false,
+    loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},    
   });
   jQuery("#pools").jqGrid('navGrid',"#pager",{edit:false, add:false, del:false, view:true},
   	{closeAfterEdit: true}, // edit

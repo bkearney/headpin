@@ -29,7 +29,8 @@
         forceFit: true,   
         editurl:"/consumertypes",
         pager: "#pager",
-        loadonce: false
+        loadonce: false,
+        loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},        
       });
       jQuery("#t2").jqGrid('navGrid',"#pager",{edit:true,add:true,del:true, view: false},
       	{closeAfterEdit: true}, // edit

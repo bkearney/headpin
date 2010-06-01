@@ -5,7 +5,7 @@
   
 :javascript
   var lastsel; 
-  jQuery("#owners").jqGrid({
+  $("#owners").jqGrid({
     url:'/owners.json',
     jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
     datatype: 'json',
@@ -27,9 +27,10 @@
     forceFit: true,   
     editurl:"/owners",
     pager: "#pager",
-    loadonce: false
+    loadonce: false,
+    loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
   });
-  jQuery("#owners").jqGrid('navGrid',"#pager",{edit:true,add:true,del:true, view: false},
+  $("#owners").jqGrid('navGrid',"#pager",{edit:true,add:true,del:true, view: false},
   	{closeAfterEdit: true}, // edit
   	{closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
   	{}, // delete
