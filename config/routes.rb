@@ -11,14 +11,10 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => :get}
   map.owners 'owners', :controller => 'owners', :action => 'update',
       :conditions => {:method => :post}            
-  map.consumers 'consumers', :controller => 'consumers', :action => 'index',
+  map.consumers 'consumers.:format', :controller => 'consumers', :action => 'index',
                     :conditions => {:method => :get}
-  map.consumers 'consumers', :controller => 'consumers', :action => 'create',
-                    :conditions => {:method => :post}                    
-  map.new_consumer 'consumers/new', :controller => 'consumers', :action => 'new',
-                    :conditions => {:method => :get}                          
-  map.consumer 'consumers/:uuid', :controller => 'consumers', :action => 'show',
-                    :conditions => {:method => :get}                                              
+  map.consumers 'consumers', :controller => 'consumers', :action => 'update',
+                    :conditions => {:method => :post}                                                               
   map.rules 'rules', :controller => 'rules', :action => 'index',
                     :conditions => {:method => :get}  
   map.rules 'rules', :controller => 'rules', :action => 'create',

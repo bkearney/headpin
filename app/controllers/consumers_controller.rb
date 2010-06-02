@@ -2,8 +2,42 @@ class ConsumersController < ApplicationController
   layout "naked"
   
   def index
-    @consumers = Consumer.find(:all)
+    types = Consumertype.find(:all)
+    @typeSelect = ""
+    types.each() do |type|
+      @typeSelect << type.id.to_s
+      @typeSelect << ":"
+      @typeSelect << type.label
+      @typeSelect << ";"
+    end
+    respond_to do |format|
+      format.html
+      format.json  {
+        @consumers = Consumer.find(:all)
+        data = GridData.new() 
+        data.set_records(@consumers)        
+        render :json => data 
+      }      
+    end    
   end
+  
+  
+  def update
+    id = params[:id]
+    oper = params[:oper]
+    case oper
+      when "edit"
+        type = Consumer.find(params[:id])
+        type.update_attributes(params)
+        type.save
+      when "del"
+        type = Consumer.find(params[:id])
+        type.destroy
+      when "add"
+        create
+    end
+    render :nothing => true
+  end    
   
   def show
     @consumer = Consumer.find(params[:uuid])
@@ -27,31 +61,37 @@ class ConsumersController < ApplicationController
   end    
   
   def create
-    attributes = params[:consumer]
-    if attributes["type_id"]
-      attributes["type"]= Consumertype.find(attributes["type_id"])
-      attributes.delete "type_id"
+    #attributes = params[:consumer]
+    attributes = params
+    attributes.delete(:id)
+    attributes.delete(:oper)
+    attributes.delete(:action)
+    attributes.delete(:controller)    
+    if attributes["type.id"]
+      attributes["type"]= Consumertype.find(attributes["type.id"])
+      attributes.delete "type.id"
     end
     @consumer = Consumer.new(attributes)
-    
-    
     # Set up the facts
     @consumer.facts= ConsumerFacts.new()
     facts = []
-    params[:entry].each() do |k,v|
-      facts << ConsumerFacts::Entry.new(v) if v["key"] != ""
+    if params[:entry]
+      params[:entry].each() do |k,v|
+        facts << ConsumerFacts::Entry.new(v) if v["key"] != ""
+      end 
     end
     @consumer.facts.entry= facts
-    respond_to do |format|
-      if @consumer.save
-        flash[:notice] = 'Consumer was successfully created.'
-        format.html { redirect_to(consumer_url(:uuid => @consumer.uuid)) }
-        format.xml  { render :xml => @consumer, :status => :created }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @consumer.errors, :status => :unprocessable_entity }
-      end
-    end
+    @consumer.save
+#    respond_to do |format|
+#      if @consumer.save
+#        flash[:notice] = 'Consumer was successfully created.'
+#        format.html { redirect_to(consumer_url(:uuid => @consumer.uuid)) }
+#        format.xml  { render :xml => @consumer, :status => :created }
+#      else
+#        format.html { render :action => "new" }
+#        format.xml  { render :xml => @consumer.errors, :status => :unprocessable_entity }
+#      end
+#    end
   end
   
   def destroy
