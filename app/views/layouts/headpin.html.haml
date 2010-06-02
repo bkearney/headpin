@@ -24,12 +24,13 @@
               });              
               $(document).error(function(event, xhr, ajaxOptions, error) {$.jGrowl(xhr.status + ' ' + xhr.statusText);});
               $("#tabs").tabs({
-                  //load: function(event, ui) {
-                      //$('a', ui.panel).click(function() {
-                      //    $(ui.panel).load(this.href);
-                      //    return false;
-                      //});
-                  //},
+                  //cookie: {expires: 1},
+                  load: function(event, ui) {
+                      $('a', ui.panel).click(function() {
+                          $(ui.panel).load(this.href);
+                          return false;
+                      });
+                  },
               });
             });
         
