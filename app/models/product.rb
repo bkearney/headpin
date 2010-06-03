@@ -7,4 +7,8 @@ class Product < CandlepinObject
     def product_type
       @attributes["type"]
     end  
+  
+    def cert
+      Certificate.find(:one, :from=>"#{self.class.site}#{self.class.collection_name}/#{id}/certificate")
+    end
 end
