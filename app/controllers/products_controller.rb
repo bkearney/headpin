@@ -2,7 +2,15 @@ class ProductsController < ApplicationController
   layout "naked"
   
   def index
-    @products = Product.find(:all)
+    respond_to do |format|
+      format.html
+      format.json  {
+        @products = Product.find(:all)
+        data = GridData.new() 
+        data.set_records(@products)        
+        render :json => data 
+      }      
+    end    
   end
   
   def show

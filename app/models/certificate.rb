@@ -1,7 +1,7 @@
 require "candlepin_object"
 require "openssl"
 
-class IdentityCertificate < CandlepinObject
+class Certificate < CandlepinObject
   self.attrs :key, :cert
   
   def keyString

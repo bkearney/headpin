@@ -1,7 +1,7 @@
 %h1 Listing Owners
 
 %table#owners
-#pager
+#owners_pager
   
 :javascript
   var lastsel; 
@@ -26,11 +26,11 @@
     viewrecords: false,
     forceFit: true,   
     editurl:"/owners",
-    pager: "#pager",
+    pager: "#owners_pager",
     loadonce: false,
     loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
   });
-  $("#owners").jqGrid('navGrid',"#pager",{edit:true,add:true,del:true, view: false},
+  $("#owners").jqGrid('navGrid',"#owners_pager",{edit:true,add:true,del:true, view: false},
   	{closeAfterEdit: true}, // edit
   	{closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
   	{}, // delete

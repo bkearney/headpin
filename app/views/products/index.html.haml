@@ -1,3 +1,42 @@
 %h1 Listing Products
 
-=render :partial => "products/product_list", :locals => {:products => @products}
+%table#products
+#products_pager
+  
+:javascript
+  var lastsel; 
+  $("#products").jqGrid({
+    url:'/products.json',
+    jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
+    datatype: 'json',
+    mtype: 'GET',
+    colNames:['ID', 'Name', 'Type','Variant', 'Version', 'Arch', 'Created', 'Updated'],
+    colModel :[ 
+      {name:'id', label:"ID", width:55,editable:true},
+      {name:'name', label:"Name", width:300,editable: true},
+      {name:'type', label:"Type", width:55,editable: true},      
+      {name:'variant', label:"Variant", width:55, editable: true},
+      {name:'version', label:"Version", width:55, editable: true}, 
+      {name:'arch', label:'Arch', width:55, editable: true},
+      {name:'created', label:'Created', width:150, formatter: 'date'},
+      {name:'updated', label:'Updated', width:150, formatter: 'date'},
+    ],
+    altRows:false,
+    rowNum:10,
+    rowList:[10,20,30],
+    sortname: 'label',
+    sortorder: 'desc',
+    viewrecords: false,
+    forceFit: true,   
+    editurl:"/products",
+    pager: "#products_pager",
+    loadonce: false,
+    loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
+  });
+  $("#products").jqGrid('navGrid',"#products_pager",{edit:true,add:true,del:true, view: false},
+    {closeAfterEdit: true}, // edit
+    {closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
+    {}, // delete
+    {}, // search
+    {} // view
+  ); 

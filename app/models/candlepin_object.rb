@@ -10,10 +10,11 @@ class CandlepinObject < ActiveResource::Base
   
   #import mappings
   MAPPINGS = {"Type" => "Consumertype",
-    "IdCert" => "IdentityCertificate",  
+    "IdCert" => "Certificate",  
     "Facts" => "ConsumerFacts",     
     "ChildProduct" => "Product",
-    "EnabledContent" => "Content",    
+    "EnabledContent" => "Content",
+    "Cert" => "Content",     
   }
   
   class << self 

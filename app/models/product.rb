@@ -2,11 +2,9 @@ require "candlepin_object"
 
 class Product < CandlepinObject
     
-    def product_hash
-      @attributes["hash"]
-    end
+    self.attrs :name, :type, :variant, :version, :arch
 
-  def product_attributes
-    @attributes["attributes"]
-  end
+    def product_type
+      @attributes["type"]
+    end  
 end
