@@ -17,8 +17,6 @@ class SetupController < ApplicationController
     CandlepinObject.user = @setup.user    
     Constants.password = @setup.password    
     CandlepinObject.password = @setup.password        
-    respond_to do |format|
-      format.html { redirect_to(setup_url) }
-    end
+    render :text => "Success"
   end         
 end

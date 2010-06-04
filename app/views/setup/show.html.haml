@@ -1,6 +1,6 @@
-%h1 Headpin Setup
+%h1 Headpin Setup #{Time.now}
 
-- form_for :setup, :url => {:action => "update"} do |f|
+- form_for :setup, :url => {:action => "update"}, :html => {:id=>"setup_form"} do |f|
   %table
     %tr
       %th= f.label "Candlpin Site"
@@ -15,4 +15,12 @@
       %td
       %td= f.submit 'update'
       
-  %h4= link_to "Init Candlepin", "#{CandlepinObject.site}admin/init"      
+  %h4= link_to "Init Candlepin", "#{CandlepinObject.site}admin/init"  
+  
+
+:javascript
+    $('#setup_form').ajaxForm({
+        success: function(responseText, statusText, xhr, $form) {
+            $.jGrowl(responseText);
+        }
+    }); 
