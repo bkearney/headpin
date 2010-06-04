@@ -13,7 +13,8 @@
         = javascript_include_tag "jquery.jgrowl"    
         = javascript_include_tag "grid.locale-en"    
         = javascript_include_tag "jquery.jqGrid.min"
-        = javascript_include_tag "jquery.form"               
+        = javascript_include_tag "jquery.form"
+        = javascript_include_tag "jquery.cookie"   
         %title Headpin        
         :javascript           
             $(document).ready(function() {
@@ -25,7 +26,7 @@
               });              
               $(document).ajaxError(function(event, xhr, ajaxOptions, error) {$.jGrowl(xhr.status + ' ' + xhr.statusText);});
               $("#tabs").tabs({
-                  //cookie: {expires: 1},
+                  cookie: {expires: 1},
                   load: function(event, ui) {
                       $('a', ui.panel).click(function() {
                           $(ui.panel).load(this.href);
