@@ -39,6 +39,11 @@ class ConsumersController < ApplicationController
     render :nothing => true
   end    
   
+  def cert
+    cons = Consumer.find(params[:id])      
+    render :text => cons.certificateString 
+  end  
+  
   def show
     @consumer = Consumer.find(params[:uuid])
     

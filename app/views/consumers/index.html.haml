@@ -24,7 +24,7 @@
           {name:'uuid', label:"UUID", width:250,editable: true},        
           {name:'created', label:'Created', width:150, formatter: 'date'},
           {name:'updated', label:'Updated', width:150, formatter: 'date'},
-          {name:'idCert.cert', label:'ID', width: 30, formatter:certFormatter},
+          {name:'uuid', label:'ID', width: 30, formatter:certFormatter},
           {name:'idCert.key', label:'PK', width: 30, formatter:pKeyFormatter}          
         ],
         altRows:false,
@@ -46,15 +46,21 @@
         {}, // search
         {} // view
       ); 
-      function certDialog(title, value) {
+      function pKeyDialog(title, value) {
         $("#certDialog").dialog({title:title});          
         $("#certDialog > pre").text(unescape(value));
         $('#certDialog').dialog('open');     
       };
+      function certDialog(title, id) {         
+        $.get("consumers/" + id + "/certificate", function(data) {
+            $("#certDialog").dialog({title:title});         
+            $("#certDialog > pre").text(data);
+            $('#certDialog').dialog('open'); 
+        });       
+      };
       function certFormatter (value, options, rowObject) {
-         return "<a href='#' onclick='certDialog(\"Identity Certificate\", \""+escape(value)+"\")'>link</a>";
-         //return "<a href='#' onclick='certDialog(\"Identity Certificate\", \"12\")'>link</a>";         
-      } ;    
+             return "<a href='#' onclick='certDialog(\"Identity Certificate\", \"" + value + "\")'>link</a>";         
+      } ;         
       function pKeyFormatter (value, options, rowObject) {
-         return "<a href='#' onclick='certDialog(\"Private Key\", \""+escape(value)+"\")'>link</a>";
+         return "<a href='#' onclick='pKeyDialog(\"Private Key\", \""+escape(value)+"\")'>link</a>";
       }  ;
