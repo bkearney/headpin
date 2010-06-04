@@ -2,7 +2,7 @@ ActionController::Routing::Routes.draw do |map|
  
   # Try and recreate the candlepin api
   map.root :controller => "headpin"
-  map.resources :pools, :products
+  map.resources :pools
   map.consumertypes 'consumertypes.:format', :controller => 'consumertypes', :action => 'index',
       :conditions => {:method => :get}
   map.consumertypes 'consumertypes', :controller => 'consumertypes', :action => 'update',
@@ -14,7 +14,11 @@ ActionController::Routing::Routes.draw do |map|
   map.consumers 'consumers.:format', :controller => 'consumers', :action => 'index',
                     :conditions => {:method => :get}
   map.consumers 'consumers', :controller => 'consumers', :action => 'update',
-                    :conditions => {:method => :post}                                                               
+                    :conditions => {:method => :post}    
+  map.products 'products.:format', :controller => 'products', :action => 'index',
+      :conditions => {:method => :get}           
+  map.products_cert 'products/:id/certificate.:format', :controller => 'products', :action => 'cert',
+      :conditions => {:method => :get}                     
   map.rules 'rules', :controller => 'rules', :action => 'index',
                     :conditions => {:method => :get}  
   map.rules 'rules', :controller => 'rules', :action => 'create',

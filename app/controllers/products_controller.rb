@@ -21,4 +21,9 @@ class ProductsController < ApplicationController
       format.xml  { render :xml => @product }
     end
   end
+  
+  def cert
+    product = Product.find(params[:id])      
+    render :text => product.cert.certificateString 
+  end
 end
