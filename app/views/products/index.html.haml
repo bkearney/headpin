@@ -53,7 +53,7 @@
             $("#certDialog").dialog({title:title});         
             $("#certDialog > pre").text(data);
             $('#certDialog').dialog('open'); 
-        });          
+        });       
     };
     function certFormatter (value, options, rowObject) {
          return "<a href='#' onclick='certDialog(\"Product Certificate\", \"" + value + "\")'>link</a>";         

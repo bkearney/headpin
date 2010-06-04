@@ -22,7 +22,7 @@
                     $.jGrowl("Server could not be reached");
                 }
               });              
-              $(document).error(function(event, xhr, ajaxOptions, error) {$.jGrowl(xhr.status + ' ' + xhr.statusText);});
+              $(document).ajaxError(function(event, xhr, ajaxOptions, error) {$.jGrowl(xhr.status + ' ' + xhr.statusText);});
               $("#tabs").tabs({
                   //cookie: {expires: 1},
                   load: function(event, ui) {
