@@ -7,6 +7,10 @@ body, p, ol, ul, td {
   line-height: 18px;
 }
 
+a img {
+	border: 0;
+}
+
 pre {
   background-color: #eee;
   padding: 10px;

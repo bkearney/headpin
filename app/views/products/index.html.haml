@@ -27,7 +27,7 @@
           {name:'arch', label:'Arch', width:55, editable: true},
           {name:'created', label:'Created', width:150, formatter: 'date'},
           {name:'updated', label:'Updated', width:150, formatter: 'date'},
-          {name:'id', label:'Cert', width: 30, formatter:certFormatter}          
+          {name:'id', label:'Cert', width: 25, align:'center', formatter:certFormatter}          
         ],
         altRows:false,
         rowNum:10,
@@ -56,5 +56,5 @@
         });       
     };
     function certFormatter (value, options, rowObject) {
-         return "<a href='#' onclick='certDialog(\"Product Certificate\", \"" + value + "\")'>link</a>";         
+         return "<a href='#' onclick='certDialog(\"Product Certificate\", \"" + value + "\")'><img src='/images/Doc.png'/></a>";         
     } ;   
