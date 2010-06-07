@@ -44,6 +44,13 @@ class ConsumersController < ApplicationController
     render :text => cons.certificateString 
   end  
   
+  def facts
+        consumer = Consumer.find(params[:id])
+        data = GridData.new() 
+        data.set_records(consumer.facts.entries)        
+        render :json => data     
+  end
+  
   def show
     @consumer = Consumer.find(params[:uuid])
     

@@ -16,6 +16,10 @@ class ConsumerFacts < CandlepinObject
     end
   end  
   
+  def entries
+    entry
+  end
+  
   def encode(options={})
     self.class.format.encode(as_json(options), options)
   end    

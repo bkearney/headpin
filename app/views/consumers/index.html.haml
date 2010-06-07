@@ -14,7 +14,7 @@
     });
     jQuery("#consumers").jqGrid({
         url:'/consumers.json',
-        jsonReader: {cell:null, id:"uuid", repeatitems:false, root:"rows"},
+        jsonReader: {cell:null, id:"uuid", repeatitems:false, root:"rows", subgrid:{repeatitems:false, root:"rows"}},
         datatype: 'json',
         mtype: 'GET',
         colNames:['Name','Type', 'UUID', 'Created', 'Updated', 'ID', 'PK'],
@@ -37,7 +37,14 @@
         editurl:"/consumers",
         pager: "#consumers_pager",
         loadonce: false,
-        loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},        
+        loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
+        subGrid: true,
+        subGridUrl: '/consumerfacts',
+        subGridModel: [{
+            name: ['Key', 'Value'],
+            width: ['200', '400'],
+            mapping: ['key', 'value'],
+        }],        
       });
       jQuery("#consumers").jqGrid('navGrid',"#consumers_pager",{edit:true,add:true,del:true, view: false},
         {closeAfterEdit: true}, // edit
