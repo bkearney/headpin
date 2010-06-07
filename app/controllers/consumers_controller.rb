@@ -47,7 +47,7 @@ class ConsumersController < ApplicationController
   def facts
         consumer = Consumer.find(params[:id])
         data = GridData.new() 
-        data.set_records(consumer.facts.entries)        
+        data.set_records(consumer.facts.entries.sort { |a, b| a.key <=> b.key})        
         render :json => data     
   end
   
