@@ -6,7 +6,7 @@
 :javascript  
     var lastsel; 
     jQuery("#t2").jqGrid({
-        url:'/consumertypes.json',
+        url:'#{consumertypes_url :format => :json}',
         jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
         datatype: 'json',
         mtype: 'GET',
@@ -24,7 +24,7 @@
         sortorder: 'desc',
         viewrecords: false,
         forceFit: true,   
-        editurl:"/consumertypes",
+        editurl:"#{consumertypes_url}",
         pager: "#pager",
         loadonce: false,
         loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},        

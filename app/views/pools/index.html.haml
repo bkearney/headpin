@@ -6,7 +6,7 @@
 :javascript
   var lastsel; 
   jQuery("#pools").jqGrid({
-    url:'/pools.json',
+    url:'#{pools_url :format => :json}',
     jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
     datatype: 'json',
     mtype: 'GET',

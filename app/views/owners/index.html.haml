@@ -6,7 +6,7 @@
 :javascript
   var lastsel; 
   $("#owners").jqGrid({
-    url:'/owners.json',
+    url:'#{owners_url :format => :json}',
     jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
     datatype: 'json',
     mtype: 'GET',
@@ -25,7 +25,7 @@
     sortorder: 'desc',
     viewrecords: false,
     forceFit: true,   
-    editurl:"/owners",
+    editurl:"#{owners_url}",
     pager: "#owners_pager",
     loadonce: false,
     loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},

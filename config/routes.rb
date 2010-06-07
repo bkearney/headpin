@@ -15,7 +15,7 @@ ActionController::Routing::Routes.draw do |map|
                     :conditions => {:method => :get}
   map.consumers 'consumers', :controller => 'consumers', :action => 'update',
                     :conditions => {:method => :post}
-  map.consumesr_facts 'consumerfacts', :controller => 'consumers', :action => 'facts',
+  map.consumer_facts 'consumerfacts', :controller => 'consumers', :action => 'facts',
                     :conditions => {:method => :get}                      
   map.consumers_cert 'consumers/:id/certificate.:format', :controller => 'consumers', :action => 'cert',
       :conditions => {:method => :get}                       

@@ -13,7 +13,7 @@
         buttons: { "Ok": function() { $(this).dialog("close"); }},
     });
     jQuery("#consumers").jqGrid({
-        url:'/consumers.json',
+        url:'#{consumers_url :format => :json}',
         jsonReader: {cell:null, id:"uuid", repeatitems:false, root:"rows", subgrid:{repeatitems:false, root:"rows"}},
         datatype: 'json',
         mtype: 'GET',
@@ -34,12 +34,12 @@
         sortorder: 'desc',
         viewrecords: false,
         forceFit: true,   
-        editurl:"/consumers",
+        editurl:"#{consumers_url}",
         pager: "#consumers_pager",
         loadonce: false,
         loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
         subGrid: true,
-        subGridUrl: '/consumerfacts',
+        subGridUrl: '#{consumer_facts_url}',
         subGridModel: [{
             name: ['Key', 'Value'],
             width: ['200', '400'],

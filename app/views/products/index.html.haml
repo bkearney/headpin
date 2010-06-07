@@ -13,7 +13,7 @@
         buttons: { "Ok": function() { $(this).dialog("close"); }},
     });  
     $("#products").jqGrid({
-        url:'/products.json',
+        url:'#{products_url :format => :json}',
         jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
         datatype: 'json',
         mtype: 'GET',
@@ -36,7 +36,7 @@
         sortorder: 'desc',
         viewrecords: false,
         forceFit: true,   
-        editurl:"/products",
+        editurl:"#{products_url}",
         pager: "#products_pager",
         loadonce: false,
         loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
