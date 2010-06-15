@@ -20,6 +20,8 @@ ActionController::Routing::Routes.draw do |map|
   map.consumers_cert 'consumers/:id/certificate.:format', :controller => 'consumers', :action => 'cert',
       :conditions => {:method => :get}                       
   map.products 'products.:format', :controller => 'products', :action => 'index',
+      :conditions => {:method => :get}     
+  map.product_tree 'product_tree', :controller => 'products', :action => 'tree',
       :conditions => {:method => :get}           
   map.products_cert 'products/:id/certificate.:format', :controller => 'products', :action => 'cert',
       :conditions => {:method => :get}                     

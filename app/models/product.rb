@@ -14,6 +14,10 @@ class Product < CandlepinObject
       @attributes["type"]
     end  
   
+    def product_attributes
+      @attributes["attributes"]
+    end
+    
     def cert
       Product.cert_for(id)  
     end

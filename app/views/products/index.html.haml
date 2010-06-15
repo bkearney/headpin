@@ -4,8 +4,33 @@
 #products_pager
 #certDialog
     %pre
-      
+#content      
+    .ui-widget.ui-widget-content.ui-corner-all.div_left     
+        #tree
+    .ui-widget.ui-widget-content.ui-corner-all.div_right     
+     
+ 
 :javascript
+    $("#tree").jstree({ 
+        "json_data" : {
+            "ajax" : {
+                "url" : "#{product_tree_url}",
+                "data" : function (n) { 
+                    return { id : n.attr ? n.attr("id") : 0 }; 
+                }
+            },
+        },
+        "themes" : {
+            "url" : "http://localhost:3000/javascripts/themes/default/style.css",
+        },
+        "ui" : {
+          "select_limit" : 1,            
+        },
+        "plugins" : [ "themes", "json_data", "ui" ],
+    })
+    .bind("select_node.jstree", function (event, data) {
+        alert("Node IS selected");
+    });    
     var lastsel; 
     $("#certDialog").dialog({
         autoOpen: false,

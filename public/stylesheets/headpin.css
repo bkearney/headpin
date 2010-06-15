@@ -64,3 +64,16 @@ h1 a {
 .green {
 	color: #00FC1D;
 }
+
+.div_left {
+    width: 500px;
+    height: 600;
+    overflow: auto;
+    float: left;
+}
+
+.div_right {
+    width: 400;
+    height: 600;
+    overflow: auto;
+}

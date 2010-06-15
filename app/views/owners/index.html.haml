@@ -4,7 +4,7 @@
 #owners_pager
   
 :javascript
-  var lastsel; 
+  var lastsel;  
   $("#owners").jqGrid({
     url:'#{owners_url :format => :json}',
     jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
@@ -12,11 +12,11 @@
     mtype: 'GET',
     colNames:['ID', 'Key','Name', 'Created', 'Updated'],
     colModel :[ 
-      {name:'id', label:"ID", width:55,},        
-      {name:'key', label:"Key", width:55,editable: true}, 
-      {name:'displayName', label:'Name', width:200, editable: true},
-      {name:'created', label:'Created', width:150, formatter: 'date'},
-      {name:'updated', label:'Updated', width:150, formatter: 'date'},
+    {name:'id', label:"ID", width:55,},        
+    {name:'key', label:"Key", width:55,editable: true}, 
+    {name:'displayName', label:'Name', width:200, editable: true},
+    {name:'created', label:'Created', width:150, formatter: 'date'},
+    {name:'updated', label:'Updated', width:150, formatter: 'date'},
     ],
     altRows:false,
     rowNum:10,
@@ -29,7 +29,7 @@
     pager: "#owners_pager",
     loadonce: false,
     loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
-  });
+   });
   $("#owners").jqGrid('navGrid',"#owners_pager",{edit:true,add:true,del:true, view: false},
   	{closeAfterEdit: true}, // edit
   	{closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add

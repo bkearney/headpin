@@ -1,5 +1,3 @@
-!!! XML
-!!!
 %html
     %head
         #{render :partial => "layouts/scripts_and_sheets"}        
@@ -24,16 +22,5 @@
               });
             });         
         
-    %body      
-        #tabs         
-            %ul.menu                 
-                %li= link_to "Consumers", consumers_url
-                %li= link_to "Consumer Types", consumertypes_url                
-                %li= link_to "Owners", owners_url    
-                %li= link_to "Products", products_url 
-                %li= link_to "Pools", pools_url                    
-                %li= link_to "Rules", rules_url                 
-                %li= link_to "Status", status_url     
-                %li
-                    %br
-                %li= link_to "Setup", setup_url    
+    %body  
+    #{yield}    
