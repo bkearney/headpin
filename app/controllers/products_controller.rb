@@ -57,9 +57,6 @@ class ProductsController < ApplicationController
           end   
           root << contentNode         
         end
-        prod.childProducts.each do |p|
-          root <<  TreeNode.new(:data => p.name, :state => "closed", :id => "prod_"+p.id)          
-        end
       end
     end
     render :json => root

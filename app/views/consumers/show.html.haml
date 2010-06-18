@@ -1,5 +1,4 @@
-%h1 Consumer #{@consumer.uuid}
-%h1= @consumer.my_entitlements.size()
+%h3 Consumer #{@consumer.uuid}
 %table
     %tr
         %th Name
@@ -12,28 +11,13 @@
         %td= @consumer.type_label        
     %tr
         %th uuid
-        %td= @consumer.uuid
-    %tr  
-        %th 
-            <a name="cert" href="#name" onclick="Effect.Appear('cert', { duration: .5 }); Effect.Appear('certHide',{ duration: .5 }); Effect.Fade('certShow',{ duration: .5 }); return true;" id="certShow">Certificate (show)</a>
-            <a name="cert" href="#name" onclick="Effect.Fade('cert',{ duration: .5 }); Effect.Fade('certHide',{ duration: .5 }); Effect.Appear('certShow',{ duration: .5 }); return true;" id="certHide"; style="display:none;">Certificate (hide)</a>
-        %td     
-            #cert{"style" => "display:none;"}
-                %pre= @consumer.certificateString        
-    %tr  
-        %th
-            <a name="key" href="#key" onclick="Effect.Appear('key',{ duration: .5 }); Effect.Appear('keyHide',{ duration: .5 }); Effect.Fade('keyShow',{ duration: .5 }); return true;" id="keyShow">Key (show)</a>
-            <a name="key" href="#key" onclick="Effect.Fade('key',{ duration: .5 }); Effect.Fade('keyHide',{ duration: .5 }); Effect.Appear('keyShow',{ duration: .5 }); return true;" id="keyHide"; style="display:none;">Key (hide)</a>  
-        %td 
-            #key{"style" => "display:none;"}
-                %pre= @consumer.keyString               
+        %td= @consumer.uuid            
     %tr
-        %th Facts
-        %td  
-    - @consumer.facts.entry.each do |fact|
-        %tr
-            %td
-            %td= fact.key
-            %td= fact.value  
-                
-= link_to 'Back', :back
+        %th Username
+        %td= @consumer.username
+    %tr
+        %th Created
+        %td= @consumer.created      
+    %tr
+        %th Created
+        %td= @consumer.updated  

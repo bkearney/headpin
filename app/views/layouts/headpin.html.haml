@@ -21,6 +21,12 @@
                           return false;
                       });
                   },
+                  ajaxOptions: {
+                    success: function(data, status, xhr){},
+                    error: function(xhr, text, error) {
+                        $.jGrowl("Tab Ajax Error");                      
+                    },
+                  },
               });
             });         
         

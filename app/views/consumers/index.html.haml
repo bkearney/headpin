@@ -4,9 +4,11 @@
 #consumers_pager
 #certDialog
     %pre
+#detail.ui-widget-content
   
 :javascript
     var lastsel; 
+    $("#detail").hide() ;    
     $("#certDialog").dialog({
         autoOpen: false,
         width: 500,
@@ -44,7 +46,18 @@
             name: ['Fact', 'Value'],
             width: ['200', '400'],
             mapping: ['key', 'value'],
-        }],        
+        }],   
+        onSelectRow: function(ids) {
+          if(ids == null) {
+            $("#detail").hide() ;
+            $.jGrowl("!");
+          } else {
+            $("#detail").show() ;
+            $.get("/consumers/"+ids, function(data) {
+              $("#detail").html(data);
+            });           
+          }
+        },
       });
       jQuery("#consumers").jqGrid('navGrid',"#consumers_pager",{edit:true,add:true,del:true, view: false},
         {closeAfterEdit: true}, // edit

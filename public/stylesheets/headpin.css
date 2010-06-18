@@ -65,6 +65,14 @@ h1 a {
 	color: #00FC1D;
 }
 
+#pcontent{
+    min-width: 900
+    width: 900;
+    height: 600;
+    min-height: 600;
+    clear: all;
+}
+
 .div_left {
     width: 500px;
     height: 600;
@@ -74,6 +82,14 @@ h1 a {
 
 .div_right {
     width: 400;
+    padding: 2px;
     height: 600;
+    min-height: 600;
     overflow: auto;
+    margin-left: 504px;
 }
+#dialog {
+    height: 500;
+    width: 100%;
+}
+
