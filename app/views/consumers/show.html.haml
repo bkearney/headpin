@@ -1,23 +1,52 @@
 %h3 Consumer #{@consumer.uuid}
-%table
-    %tr
+
+#consumerInfo
+  %h3
+    %a{:href=>'#'}
+      General
+  %div
+    %table
+      %tr
         %th Name
         %td= @consumer.name
-    %tr
+      %tr
         %th Id
         %td= @consumer.id
-    %tr
+      %tr
         %th Type
         %td= @consumer.type_label        
-    %tr
+      %tr
         %th uuid
         %td= @consumer.uuid            
-    %tr
+      %tr
         %th Username
         %td= @consumer.username
-    %tr
+      %tr
         %th Created
         %td= @consumer.created      
-    %tr
+      %tr
         %th Created
-        %td= @consumer.updated  
+        %td= @consumer.updated 
+  %h3
+    %a{:href=>'#'}
+      Certificates
+  %div
+    %p
+      %a{:href=>"#", :onclick => "certDialog('Identity Certificate', '#{@consumer.uuid}');"}
+        Identity Certitifcate
+    %p
+      %a{:href=>"#", :onclick => "pKeyDialog('Private Key', '#{@consumer.idCert.key.dump}');"}
+        Private Key    
+        
+        
+:javascript
+  $("#consumerInfo").accordion({
+    fillSpace: true
+  });
+  $("#consumerInfo").resizable({
+    resize: function() {
+      $("#consumerInfo").accordion("resize");
+    },
+    minHeight: 140
+  });
+        
