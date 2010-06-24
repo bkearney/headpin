@@ -10,6 +10,8 @@ ActionController::Routing::Routes.draw do |map|
   map.owners 'owners.:format', :controller => 'owners', :action => 'index',
       :conditions => {:method => :get}
   map.owners 'owners', :controller => 'owners', :action => 'update',
+      :conditions => {:method => :post}
+  map.owners_refresh 'owners/:id/refresh_subscriptions', :controller => 'owners', :action => 'refresh_subscriptions',
       :conditions => {:method => :post}            
   map.consumers 'consumers.:format', :controller => 'consumers', :action => 'index',
                     :conditions => {:method => :get}

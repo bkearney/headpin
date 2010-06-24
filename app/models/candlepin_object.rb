@@ -127,4 +127,10 @@ class CandlepinObject < ActiveResource::Base
       @attributes[key] = new_attributes[key] if new_attributes[key.to_sym]      
     end
   end
+
+  def put(method_name, options = {}, body = '')
+    url = "#{self.class.prefix(prefix_options)}#{self.class.collection_name}/#{id}/#{method_name}#{self.class.__send__(:query_string, options)}"
+    connection.put(url, body, self.class.headers)
+  end
+
 end

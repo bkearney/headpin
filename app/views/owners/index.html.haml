@@ -10,13 +10,14 @@
     jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
     datatype: 'json',
     mtype: 'GET',
-    colNames:['ID', 'Key','Name', 'Created', 'Updated'],
+    colNames:['ID', 'Key','Name', 'Created', 'Updated', 'Actions'],
     colModel :[ 
-    {name:'id', label:"ID", width:55,},        
-    {name:'key', label:"Key", width:55,editable: true}, 
-    {name:'displayName', label:'Name', width:200, editable: true},
-    {name:'created', label:'Created', width:150, formatter: 'date'},
-    {name:'updated', label:'Updated', width:150, formatter: 'date'},
+      {name:'id', label:"ID", width:55,},        
+      {name:'key', label:"Key", width:55,editable: true}, 
+      {name:'displayName', label:'Name', width:200, editable: true},
+      {name:'created', label:'Created', width:150, formatter: 'date'},
+      {name:'updated', label:'Updated', width:150, formatter: 'date'},
+      {name:'id', label:'Actions', width:150, formatter: actionFormatter},      
     ],
     altRows:false,
     rowNum:10,
@@ -37,3 +38,10 @@
   	{}, // search
   	{} // view
   ); 
+  function refresh_subscriptions(id) {
+    url = "/owners/" + id + "/refresh_subscriptions";  
+    $.post(url)
+  };
+  function actionFormatter (value, options, rowObject) {
+       return "<a href='#' onclick='refresh_subscriptions(\"" + value + "\");'>Refresh</a>";         
+  } ;     

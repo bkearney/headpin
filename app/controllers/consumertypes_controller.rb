@@ -20,11 +20,11 @@ class ConsumertypesController < ApplicationController
     oper = params[:oper]
     case oper
       when "edit"
-        type = Consumertype.find(params[:id])
+        type = Consumertype.find(id)
         type.update_attributes(params)
         type.save
       when "del"
-        type = Consumertype.find(params[:id])
+        type = Consumertype.find(id)
         type.destroy
       when "add"
         type = Consumertype.new()

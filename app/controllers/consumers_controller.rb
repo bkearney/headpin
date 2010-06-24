@@ -86,13 +86,13 @@ class ConsumersController < ApplicationController
     @consumer = Consumer.new(attributes)
     # Set up the facts
     @consumer.facts= ConsumerFacts.new()
-    facts = []
+    new_facts = []
     if params[:entry]
       params[:entry].each() do |k,v|
-        facts << ConsumerFacts::Entry.new(v) if v["key"] != ""
+        new_facts << ConsumerFacts::Entry.new(v) if v["key"] != ""
       end 
     end
-    @consumer.facts.entry= facts
+    @consumer.facts.entry= new_facts
     @consumer.save
 #    respond_to do |format|
 #      if @consumer.save

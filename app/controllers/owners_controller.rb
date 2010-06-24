@@ -18,11 +18,11 @@ class OwnersController < ApplicationController
     oper = params[:oper]
     case oper
       when "edit"
-        type = Owner.find(params[:id])
+        type = Owner.find(id)
         type.update_attributes(params)
         type.save
       when "del"
-        type = Owner.find(params[:id])
+        type = Owner.find(id)
         type.destroy
       when "add"
         type = Owner.new()
@@ -30,6 +30,12 @@ class OwnersController < ApplicationController
         type.save()
     end
     render :nothing => true
-  end      
+  end
   
+  def refresh_subscriptions
+    id = params[:id]  
+    owner = Owner.find(id)
+    owner.refresh_subscriptions if owner 
+    render :nothing => true
+  end
 end
