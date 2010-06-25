@@ -1,29 +1,64 @@
 %h1 Product: #{@product.name}
-%table
-    %tr
-        %td ID:
+#certDialog
+  %pre  
+#productinfo{:height => 500}
+  %h3
+    %a{:href=>'#'}
+    General
+  %div
+    %table.colorize
+      %tr
+        %th ID:
         %td=@product.id
-    %tr
-        %td Label:
-        %td=@product.label         
-    %tr
-        %td Attributes:
-    -@product.product_attributes.each do |attr|
+      %tr
+        %th Name:
+        %td=@product.name
+      %tr
+        %th Product Certificate
+        %td
+          %a{:href=>"#", :onclick => "certDialog('Product Certificate', '#{@product.id}');"}
+            %img{:src=>"images/Doc.png"}                 
+  %h3
+    %a{:href=>'#'}
+      Attributes
+  %div   
+    %table.colorize
+      %tr
+        %th Name
+        %th value
+      -@product.product_attributes.each do |attr|
         %tr
-            %td
-            %td= attr.name
-            %td= attr.value 
+          %td= attr.name
+          %td= attr.value 
+  %h3
+    %a{:href=>'#'}
+      Content
+  %div               
     - if @product.enabledContent.size > 0
-        %tr
-            %td Enabled Content   
-        %tr
-            %td
-            %td
-            %td=render :partial => "products/content_list", :locals => {:contents => @product.enabledContent}    
-    - if @product.content.size > 0
-        %tr
-            %td Content   
-        %tr
-            %td
-            %td
-            %td=render :partial => "products/content_list", :locals => {:contents => @product.content}   
+      %h3 Enabled
+      =render :partial => "products/content_list", :locals => {:contents => @product.enabledContent}
+      %h3 Content
+      =render :partial => "products/content_list", :locals => {:contents => @product.content}
+:javascript
+    $("table.colorize").colorize();
+    $("#productinfo").accordion({
+      fillSpace: true
+    });    
+    $("#productinfo").resizable({
+      resize: function() {
+        $("#productinfo").accordion("resize");
+      },
+      minHeight: 500
+    });    
+    function certDialog(title, id) {         
+      $.get("products/" + id + "/certificate", function(data) {
+        $("#certDialog").dialog({title:title});         
+        $("#certDialog > pre").text(data);
+        $('#certDialog').dialog('open'); 
+      });       
+    };    
+    $("#certDialog").dialog({
+      autoOpen: false,
+      width: 800,
+      buttons: { "Ok": function() { $(this).dialog("close"); }},
+    });      

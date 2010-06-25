@@ -2,13 +2,11 @@
 
 %table#products
 #products_pager
-#certDialog
-    %pre  
 #pcontent
     .ui-layout-west.ui-widget.ui-widget-content.ui-corner-all
         #tree
     .ui-layout-center.ui-widget.ui-widget-content.ui-corner-all
-        #prod_detail   
+        #prod_detail{:height => 500}   
         
 :javascript
     $("#tree").jstree({ 
@@ -59,11 +57,6 @@
         });              
     });    
     var lastsel; 
-    $("#certDialog").dialog({
-        autoOpen: false,
-        width: 800,
-        buttons: { "Ok": function() { $(this).dialog("close"); }},
-    });  
     $("#productsw").jqGrid({
         url:'#{products_url :format => :json}',
         jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
@@ -100,13 +93,6 @@
         {}, // search
         {} // view
     ); 
-    function certDialog(title, id) {         
-        $.get("products/" + id + "/certificate", function(data) {
-            $("#certDialog").dialog({title:title});         
-            $("#certDialog > pre").text(data);
-            $('#certDialog').dialog('open'); 
-        });       
-    };
     function certFormatter (value, options, rowObject) {
          return "<a href='#' onclick='certDialog(\"Product Certificate\", \"" + value + "\")'><img src='/images/Doc.png'/></a>";         
     } ;   
