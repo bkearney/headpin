@@ -5,7 +5,7 @@
     %a{:href=>'#'}
       General
   %div
-    %table
+    %table#general
       %tr
         %th Name
         %td= @consumer.name
@@ -27,26 +27,57 @@
       %tr
         %th Created
         %td= @consumer.updated 
+      %tr
+        %th Identity Certificate
+        %td
+          %a{:href=>"#", :onclick => "certDialog('Identity Certificate', '#{@consumer.uuid}');"}
+            %img{:src=>"images/Doc.png"}
+      %tr
+        %th Private Key
+        %td
+          %a{:href=>"#", :onclick => "pKeyDialog('Private Key', '#{@consumer.idCert.key.dump}');"}
+            %img{:src=>"images/Doc.png"}            
+           
   %h3
     %a{:href=>'#'}
-      Certificates
+      Facts
   %div
-    %p
-      %a{:href=>"#", :onclick => "certDialog('Identity Certificate', '#{@consumer.uuid}');"}
-        Identity Certitifcate
-    %p
-      %a{:href=>"#", :onclick => "pKeyDialog('Private Key', '#{@consumer.idCert.key.dump}');"}
-        Private Key    
+    %table#facts
+      %tr
+        %th Fact Name
+        %th Fact Value
+      -@consumer.facts.entries.each do |fact|
+        %tr
+          %td=fact.key
+          %td=fact.value  
+      
+  %h3
+    %a{:href=>'#'}
+      Entitlements
+  %div
+    %table#entitlements
+      %tr
+        %th
+          ID
+      -@consumer.my_entitlements.each() do |ent|
+        %tr
+          %td= ent.id
+                    
         
         
 :javascript
-  $("#consumerInfo").accordion({
-    fillSpace: true
-  });
-  $("#consumerInfo").resizable({
-    resize: function() {
-      $("#consumerInfo").accordion("resize");
-    },
-    minHeight: 140
-  });
+  $(document).ready(function(){
+    $("#consumerInfo").accordion({
+      fillSpace: true
+    });
+    $("#consumerInfo").resizable({
+      resize: function() {
+        $("#consumerInfo").accordion("resize");
+      },
+      minHeight: 140
+    });
+    $("#facts").colorize()    
+    $("#general").colorize();    
+    $("#entitlements").colorize();
+   });
         
