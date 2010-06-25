@@ -4,9 +4,6 @@
         %td ID:
         %td=@product.id
     %tr
-        %td Hash:
-        %td=@product.product_hash 
-    %tr
         %td Label:
         %td=@product.label         
     %tr
@@ -15,14 +12,7 @@
         %tr
             %td
             %td= attr.name
-            %td= attr.value
-    - if @product.childProducts.size > 0
-        %tr
-            %td Sub Products    
-        %tr
-            %td
-            %td
-            %td=render :partial => "products/product_list", :locals => {:products => @product.childProducts} 
+            %td= attr.value 
     - if @product.enabledContent.size > 0
         %tr
             %td Enabled Content   
@@ -37,5 +27,3 @@
             %td
             %td
             %td=render :partial => "products/content_list", :locals => {:contents => @product.content}   
-    %tr
-        %td=link_to 'Back', :back

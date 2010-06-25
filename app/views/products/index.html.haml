@@ -3,14 +3,13 @@
 %table#products
 #products_pager
 #certDialog
-    %pre
-#pcontent  
-    .ui-widget.ui-widget-content.ui-corner-all.div_left     
+    %pre  
+#pcontent
+    .ui-layout-west.ui-widget.ui-widget-content.ui-corner-all
         #tree
-    .ui-widget.ui-widget-content.ui-corner-all.div_right  
-        fdksjfdslkj   
-     
- 
+    .ui-layout-center.ui-widget.ui-widget-content.ui-corner-all
+        #prod_detail   
+        
 :javascript
     $("#tree").jstree({ 
         "json_data" : {
@@ -27,10 +26,37 @@
         "ui" : {
           "select_limit" : 1,            
         },
-        "plugins" : [ "themes", "json_data", "ui" ],
+        types: {
+          types : {
+            product: {
+            },
+            attributes: {
+                "select_node" : function () {return false;},
+            },          
+            attribute: {
+                "select_node" : function () {return false;},
+            },   
+            contents: {
+                "select_node" : function () {return false;},
+            },    
+            content: {
+                "select_node" : function () {return false;},
+            },     
+            root: {
+                "select_node" : function () {return false;},
+            },                                 
+          },  
+          default: {
+              "select_node" : function () {return false;},
+          },
+        },
+        "plugins" : [ "themes", "json_data", "ui", "types" ],
     })
     .bind("select_node.jstree", function (event, data) {
-        alert("Node IS selected");
+        id = data.rslt.obj.attr("id").replace("prod_","");
+        $.get("/products/"+id, function(data) {
+          $("#prod_detail").html(data);
+        });              
     });    
     var lastsel; 
     $("#certDialog").dialog({
@@ -38,7 +64,7 @@
         width: 800,
         buttons: { "Ok": function() { $(this).dialog("close"); }},
     });  
-    $("#products").jqGrid({
+    $("#productsw").jqGrid({
         url:'#{products_url :format => :json}',
         jsonReader: {cell:null, id:"id", repeatitems:false, root:"rows"},
         datatype: 'json',
@@ -67,7 +93,7 @@
         loadonce: false,
         loadError: function(xhr, status, error){$.jGrowl(xhr.status + ' ' + xhr.statusText);},
     });
-    $("#products").jqGrid('navGrid',"#products_pager",{edit:true,add:true,del:true, view: false},
+    $("#productsw").jqGrid('navGrid',"#products_pager",{edit:true,add:true,del:true, view: false},
         {closeAfterEdit: true}, // edit
         {closeAfterAdd: true, jqModal:true, addtext:"Add a new Type"}, // add
         {}, // delete
@@ -84,3 +110,12 @@
     function certFormatter (value, options, rowObject) {
          return "<a href='#' onclick='certDialog(\"Product Certificate\", \"" + value + "\")'><img src='/images/Doc.png'/></a>";         
     } ;   
+    $('#pcontent').layout({ 
+        west__width: "600",
+        center__size: "auto",
+        closable: false,
+        applyDefaultStyles: true,
+    });
+    //TODO: figure out this hack
+    $('#pcontent').height(600);
+    $('#pcontent').layout().resizeAll();

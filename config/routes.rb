@@ -23,6 +23,8 @@ ActionController::Routing::Routes.draw do |map|
       :conditions => {:method => :get}          
   map.consumer "consumers/:uuid", :controller => 'consumers', :action => 'show',
                     :conditions => {:method => :get}
+  map.product "products/:id", :controller => 'products', :action => 'show',
+                    :conditions => {:method => :get}                    
   map.products 'products.:format', :controller => 'products', :action => 'index',
       :conditions => {:method => :get}     
   map.product_tree 'product_tree', :controller => 'products', :action => 'tree',

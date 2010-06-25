@@ -32,9 +32,9 @@ class ProductsController < ApplicationController
     id = params[:id]
     if id == "0"
       products = Product.find(:all)
-      root = TreeNode.new(:id => 0, :data => "Products", :state => "open")
+      root = TreeNode.new(:id => 0, :data => "Products", :state => "open", :rel => :root)
       products.each do |prod|
-        root <<  TreeNode.new(:data => prod.name, :state => "closed", :id => "prod_"+prod.id)
+        root <<  TreeNode.new(:data => prod.name, :state => "closed", :id => "prod_"+prod.id, :rel => :product)
       end
     else
       if id.match("prod_")
@@ -42,17 +42,17 @@ class ProductsController < ApplicationController
         prod = Product.find(id)
         root = []
         if prod.product_attributes.size > 0 
-          attrNode = TreeNode.new(:state => "closed", :data => "Attributes", :id => "attrs_"+id)
+          attrNode = TreeNode.new(:state => "closed", :data => "Attributes", :id => "attrs_"+id, :rel => :attributes)
           prod.product_attributes.each() do |a|
-            dataNode = TreeNode.new(:id => a.id, :data => a.name + " => " + a.value)
+            dataNode = TreeNode.new(:id => a.id, :data => a.name + " => " + a.value, :rel => :attribute)
             attrNode << dataNode
           end
           root << attrNode        
         end
         if prod.content.size > 0
-          contentNode = TreeNode.new(:state => "closed", :data => "Content", :id => "cont_"+id)
+          contentNode = TreeNode.new(:state => "closed", :data => "Content", :id => "cont_"+id ,:rel => :contents)
           prod.content.each() do |c|
-            dataNode = TreeNode.new(:id => c.id, :data => c.contentUrl)
+            dataNode = TreeNode.new(:id => c.id, :data => c.contentUrl, :rel => :content)
             contentNode << dataNode
           end   
           root << contentNode         

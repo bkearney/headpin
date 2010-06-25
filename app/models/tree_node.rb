@@ -6,6 +6,7 @@ class TreeNode
   def initialize(hash={})
     @attr = hash[:attr] || {}
     @attr[:id] = hash[:id] if hash[:id]
+    @attr[:rel] = hash[:rel] if hash[:rel]    
     @children = hash[:children] || nil
     @state = hash[:state] || nil
     @data = hash[:data] || "none"

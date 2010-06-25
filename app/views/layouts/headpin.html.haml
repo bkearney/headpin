@@ -18,6 +18,9 @@
                   load: function(event, ui) {
                       $('a', ui.panel).click(function() {
                           $(ui.panel).load(this.href);
+                          if ($("#pcontent")) {
+                            $("#pcontent").layout().resizeAll();
+                          }
                           return false;
                       });
                   },
